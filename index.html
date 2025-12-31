@@ -1,174 +1,505 @@
-<!doctype html> 
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>swara2013 — Fun Portfolio</title>
-  <meta name="description" content="A playful GitHub Pages site for swara2013" />
-  <!--
-    Single-file site:
-    - Replace the display name "swara2013" below with your real name if you want.
-    - Edit project links (look for links that include YOUR_HANDLE or swara2013).
-    - To add a custom avatar, replace the <svg> inside .avatar with an <img src="assets/avatar.png"> and upload that file.
-  -->
+  <title>Swara Ananth — Portfolio</title>
+  <meta name="description" content="Swara Ananth — personal site" />
+
+  <!-- Google Fonts: Londrina Shadow for the title, Anaheim for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Anaheim&display=swap" rel="stylesheet">
+
   <style>
+    /* Color palette */
     :root{
-      --bg-1:#071126; --bg-2:#0b1630;
-      --accent:#ff6b6b; --accent-2:#6bdbff;
-      --card: rgba(255,255,255,0.03);
-      color-scheme: dark;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color:#e6eef8;
+      --cerulean: #2E5DB5;
+      --pigment:  #2D349D;
+      --teal:     #008082;
+      --bud:      #7BB662;
+      --chinese:  #D0DB61;
+
+      --bg-dark:  linear-gradient(180deg, #07122a 0%, #071534 60%);
+      --glass: rgba(255,255,255,0.04);
+      --accent-grad: linear-gradient(90deg,var(--cerulean),var(--pigment));
+      --text-high: #F7FBFF;
+      --muted: #B7D0FF;
+      --max-width: 1100px;
     }
-    html,body{height:100%; margin:0; background:
-      radial-gradient(800px 400px at 10% 10%, rgba(107,219,255,0.06), transparent),
-      linear-gradient(180deg,var(--bg-1),var(--bg-2));}
-    .wrap{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:36px;}
-    .site{max-width:980px; width:100%; position:relative; box-sizing:border-box;}
-    /* floating shapes */
-    .shape{position:absolute;border-radius:50%;opacity:0.12;filter:blur(18px);pointer-events:none;}
-    .s1{width:220px;height:220px;background:linear-gradient(90deg,var(--accent),#ffd66b);top:-40px;left:-40px;animation:float1 8s ease-in-out infinite}
-    .s2{width:160px;height:160px;background:linear-gradient(90deg,var(--accent-2),#7b6bff);bottom:-60px;right:-40px;animation:float2 9s ease-in-out infinite}
-    @keyframes float1{0%{transform:translateY(0)}50%{transform:translateY(12px)}100%{transform:translateY(0)}}
-    @keyframes float2{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(12deg)}100%{transform:translateY(0) rotate(0deg)}}
 
-    /* header */
-    .hero{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;margin-bottom:24px}
-    .avatar{width:96px;height:96px;border-radius:16px;padding:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 30px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}
-    .avatar svg{width:100%;height:100%;display:block;border-radius:10px}
-    .title h1{margin:0;font-size:clamp(1.3rem,3.4vw,2.0rem);letter-spacing:-0.4px}
-    .tag{color:#cfe8ff;margin-top:6px;font-size:0.95rem}
-    .meta{margin-top:10px;display:flex;gap:8px;align-items:center}
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      :root { --anim-time: 0.01s; }
+    }
+    :root { --anim-time: 360ms; }
 
-    /* layout */
-    .cols{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
-    h2{margin:0 0 10px 0}
-    .projects{display:grid;gap:10px}
-    .proj{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,0.01),transparent);text-decoration:none;color:inherit;transition:transform .16s ease,box-shadow .16s ease}
-    .proj:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(2,6,23,0.6)}
-    .thumb{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#051025;font-weight:700}
-    .side .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#051025;font-weight:700}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Anaheim", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-dark);
+      color: var(--text-high);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-    .contact{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .contact a{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);color:#dff3ff;text-decoration:none;font-weight:600}
-    .contact a:hover{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#051025;transform:translateY(-4px)}
+    /* Page container */
+    .page {
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:48px 20px;
+      box-sizing:border-box;
+    }
+    .wrap {
+      width:100%;
+      max-width:var(--max-width);
+      position:relative;
+    }
 
-    footer{margin-top:18px;text-align:center;color:#a9c5e2;font-size:0.9rem}
+    /* Decorative mandala in background (subtle) */
+    .mandala {
+      position:absolute;
+      right:-60px;
+      top:-40px;
+      width:420px;
+      height:420px;
+      opacity:0.08;
+      pointer-events:none;
+      filter: blur(1px);
+    }
+    .mandala.left {
+      left:-80px; top:40%;
+      transform:translateY(-50%) rotate(12deg);
+      opacity:0.06;
+    }
 
-    @media (max-width:900px){.hero{grid-template-columns:80px 1fr}.cols{grid-template-columns:1fr}.side{order:3}}
+    /* Banner / header */
+    header.banner{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:22px;
+      border-radius:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow:
+        8px 8px 18px rgba(16,22,40,0.6),
+        -6px -6px 14px rgba(30,40,80,0.18);
+      border: 1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+    }
+
+    .banner .title {
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      flex:1;
+    }
+
+    .site-title {
+      font-family: "Londrina Shadow", cursive;
+      font-size: clamp(34px, 6vw, 56px);
+      line-height:1;
+      color: var(--chinese);
+      text-shadow:
+        0 2px 0 rgba(0,0,0,0.55),
+        0 6px 22px rgba(45,52,157,0.12);
+      margin:0;
+      letter-spacing: -1px;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-weight:600;
+      font-size:clamp(14px, 1.4vw, 16px);
+    }
+
+    /* Avatar */
+    .avatar {
+      width:96px; height:96px;
+      border-radius:18px;
+      overflow:hidden;
+      padding:6px;
+      background: var(--accent-grad);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .avatar img { width:100%; height:100%; object-fit:cover; display:block; border-radius:12px; }
+
+    /* Navigation tabs (radio buttons method) */
+    .tabs { margin-top:18px; }
+    .tabs .controls {
+      display:flex; gap:10px; flex-wrap:wrap;
+      background: linear-gradient(90deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      padding:10px;
+      border-radius:12px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .tabs input[type="radio"]{ display:none; }
+
+    .tabs label {
+      cursor:pointer;
+      padding:10px 14px;
+      border-radius:10px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:0.95rem;
+      transition: all var(--anim-time) ease;
+      box-shadow: none;
+      background:transparent;
+      border: 1px solid transparent;
+    }
+
+    /* checked tab styling: glass + accent outline + neumorphism lift */
+    .tabs input#tab-about:checked ~ .controls label[for="tab-about"],
+    .tabs input#tab-projects:checked ~ .controls label[for="tab-projects"],
+    .tabs input#tab-interests:checked ~ .controls label[for="tab-interests"],
+    .tabs input#tab-skills:checked ~ .controls label[for="tab-skills"],
+    .tabs input#tab-achievements:checked ~ .controls label[for="tab-achievements"],
+    .tabs input#tab-pictures:checked ~ .controls label[for="tab-pictures"],
+    .tabs input#tab-contact:checked ~ .controls label[for="tab-contact"],
+    .tabs input#tab-how:checked ~ .controls label[for="tab-how"] {
+      color: #051025;
+      background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.88));
+      box-shadow:
+        6px 6px 16px rgba(2,6,23,0.55),
+        -6px -6px 12px rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.55);
+    }
+
+    /* Panels area */
+    .panels {
+      margin-top:18px;
+      display:block;
+      min-height:420px;
+    }
+    .panel {
+      display:none;
+      padding:22px;
+      border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow:
+        8px 10px 30px rgba(6,10,30,0.55);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Show the corresponding panel when radio checked */
+    .tabs input#tab-about:checked ~ .panels #panel-about,
+    .tabs input#tab-projects:checked ~ .panels #panel-projects,
+    .tabs input#tab-interests:checked ~ .panels #panel-interests,
+    .tabs input#tab-skills:checked ~ .panels #panel-skills,
+    .tabs input#tab-achievements:checked ~ .panels #panel-achievements,
+    .tabs input#tab-pictures:checked ~ .panels #panel-pictures,
+    .tabs input#tab-contact:checked ~ .panels #panel-contact,
+    .tabs input#tab-how:checked ~ .panels #panel-how {
+      display:block;
+      animation: panelFade var(--anim-time) ease both;
+    }
+
+    @keyframes panelFade {
+      from { opacity:0; transform: translateY(6px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* Cards and glass/neumorphism elements inside panels */
+    .card-row { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:14px; margin-top:12px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
+      border-radius:12px;
+      padding:14px;
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: 6px 6px 18px rgba(2,6,23,0.5), -6px -6px 14px rgba(255,255,255,0.02);
+    }
+    h2.section-title { margin:0; color:var(--chinese); font-size:1.1rem; }
+    p.lead { color:var(--muted); margin-top:8px; }
+
+    /* Projects list */
+    .project {
+      display:flex; gap:12px; align-items:center; padding:10px; border-radius:10px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.012), transparent);
+      transition: transform var(--anim-time) ease, box-shadow var(--anim-time) ease;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .project:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(2,6,23,0.55);
+    }
+    .project .thumb {
+      width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, var(--teal), var(--bud));
+      color:#031014; font-weight:800;
+      flex-shrink:0;
+    }
+
+    /* Pictures gallery */
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:10px;}
+    .gallery img { width:100%; height:120px; object-fit:cover; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
+
+    /* Footer / small text */
+    .small { color:#9dbbe6; font-size:0.92rem; }
+
+    /* Responsive */
+    @media (max-width:880px){
+      .banner { flex-direction:row; gap:12px; padding:14px; align-items:center; }
+      .controls { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none }
+      .tabs label { white-space:nowrap; }
+      .mandala { display:none; }
+      .wrap { padding-bottom:60px; }
+    }
+
+    /* Utility: subtle divider */
+    .divider { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); margin:14px 0; border-radius:4px; }
+
+    /* Accessibility: focus */
+    label:focus, a:focus { outline:3px solid rgba(200,230,255,0.12); outline-offset:3px; }
+
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="site" role="main">
-      <div class="shape s1" aria-hidden="true"></div>
-      <div class="shape s2" aria-hidden="true"></div>
+  <div class="page">
+    <div class="wrap" role="main">
 
-      <header class="hero" aria-label="Introduction">
+      <!-- decorative mandalas (SVGs) -->
+      <svg class="mandala" viewBox="0 0 200 200" aria-hidden="true">
+        <!-- simple mandala-like rings -->
+        <defs>
+          <linearGradient id="mg" x1="0" x2="1">
+            <stop offset="0" stop-color="#2E5DB5"/>
+            <stop offset="1" stop-color="#2D349D"/>
+          </linearGradient>
+        </defs>
+        <g fill="none" stroke="url(#mg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="100" cy="100" r="60" opacity="0.9"/>
+          <circle cx="100" cy="100" r="40" opacity="0.7"/>
+          <g transform="rotate(22 100 100)">
+            <path d="M100 40 L108 62 L132 62 L112 78 L120 100 L100 86 L80 100 L88 78 L68 62 L92 62 Z" opacity="0.6"/>
+          </g>
+        </g>
+      </svg>
+
+      <header class="banner" role="banner" aria-label="Site header">
         <div class="avatar" aria-hidden="true">
-          <!-- Inline SVG avatar (replace with <img src="assets/avatar.png" alt="..."> if you add an image file) -->
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
-            <defs>
-              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stop-color="#ff6b6b"/>
-                <stop offset="1" stop-color="#6bdbff"/>
-              </linearGradient>
-            </defs>
-            <rect rx="12" width="100" height="100" fill="url(#g)"></rect>
-            <text x="50" y="58" font-family="Inter, system-ui, sans-serif" font-size="46" text-anchor="middle" fill="#051025" font-weight="700">S</text>
-          </svg>
+          <!--
+            Replace the src below with a public URL or upload an image to your repo and use a relative path like:
+            <img src="assets/avatar.png" alt="Swara Ananth">
+            NOTE: the Gmail attachment URL you gave likely requires authentication and won't appear publicly.
+          -->
+          <img src="assets/avatar.png" alt="Avatar — replace with your image" onerror="this.style.display='none'">
         </div>
 
         <div class="title">
-          <h1>Hi — I'm swara2013 <span style="font-size:0.9rem">🎨🚀</span></h1>
-          <div class="tag">I build playful projects, learn by doing, and enjoy creative uses of AI. Student • Maker • Curious</div>
-
-          <div class="meta">
-            <span class="badge" style="background:linear-gradient(90deg,#6bdbff,#ff6b6b); color:#051025; padding:6px 10px; border-radius:999px; font-weight:700;">Deadline: Jan 4, 2026</span>
-            <div style="color:#cfe8ff; font-weight:600; margin-left:8px;">Fun portfolio challenge</div>
-          </div>
+          <h1 class="site-title">Swara Ananth</h1>
+          <div class="tagline">[Add a short tagline here — e.g. Student • Maker • Designer]</div>
+          <div class="small" style="margin-top:8px;">Colorful, stylish portfolio • high-contrast • glass + neumorphism</div>
         </div>
       </header>
 
-      <div class="cols" aria-label="Content area">
-        <main>
-          <section class="card" aria-labelledby="about">
-            <h2 id="about">About me</h2>
-            <p>Hello — I'm a student building small web projects and experimenting with AI. I like colorful design and learning by doing. Replace this paragraph with your own short bio.</p>
+      <!-- Tabs -->
+      <div class="tabs" role="tablist" aria-label="Main sections">
+        <!-- Radio inputs (one checked by default) -->
+        <input type="radio" id="tab-about" name="tabs" checked>
+        <input type="radio" id="tab-projects" name="tabs">
+        <input type="radio" id="tab-interests" name="tabs">
+        <input type="radio" id="tab-skills" name="tabs">
+        <input type="radio" id="tab-achievements" name="tabs">
+        <input type="radio" id="tab-pictures" name="tabs">
+        <input type="radio" id="tab-contact" name="tabs">
+        <input type="radio" id="tab-how" name="tabs">
 
-            <h3 style="margin-top:12px">What I'm learning</h3>
-            <ul>
-              <li>HTML & CSS (responsive design)</li>
-              <li>Git & GitHub Pages</li>
-              <li>JavaScript basics</li>
-            </ul>
+        <!-- Labels act as tabs -->
+        <div class="controls" role="presentation">
+          <label for="tab-about" role="tab" aria-controls="panel-about">About</label>
+          <label for="tab-projects" role="tab" aria-controls="panel-projects">Projects</label>
+          <label for="tab-interests" role="tab" aria-controls="panel-interests">Interests</label>
+          <label for="tab-skills" role="tab" aria-controls="panel-skills">Skills</label>
+          <label for="tab-achievements" role="tab" aria-controls="panel-achievements">Achievements</label>
+          <label for="tab-pictures" role="tab" aria-controls="panel-pictures">Pictures</label>
+          <label for="tab-contact" role="tab" aria-controls="panel-contact">Contact</label>
+          <label for="tab-how" role="tab" aria-controls="panel-how">How I Built This</label>
+        </div>
+
+        <div class="panels" tabindex="0">
+          <!-- ABOUT -->
+          <section id="panel-about" class="panel" role="tabpanel" aria-labelledby="tab-about">
+            <h2 class="section-title">About Me</h2>
+            <p class="lead">Replace this paragraph with your bio. You said you'd insert the text directly — add 2–4 sentences describing yourself, your studies, and what you enjoy building.</p>
+
+            <div class="divider"></div>
+
+            <div class="card-row">
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">Quick facts</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Location: [City, Country]</li>
+                  <li>School / Program: [School name]</li>
+                  <li>Pronouns: [optional]</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">Current focus</h3>
+                <p class="small" style="margin:0;">Learning web design, experimenting with creative coding, and documenting my projects for the monthly challenge.</p>
+              </div>
+            </div>
           </section>
 
-          <section class="card" style="margin-top:14px" aria-labelledby="projects">
-            <h2 id="projects">Projects</h2>
-            <div class="projects">
-              <a class="proj" href="https://github.com/swara2013" target="_blank" rel="noopener">
-                <div class="thumb">GH</div>
-                <div>
-                  <div style="font-weight:700">My GitHub</div>
-                  <div style="color:#a9c5e2; font-size:0.92rem">All my repos and projects live here. Replace with specific project links.</div>
-                </div>
-              </a>
+          <!-- PROJECTS -->
+          <section id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
+            <h2 class="section-title">Projects</h2>
+            <p class="lead">List and link your projects. Replace the placeholders below with your repo URLs or live demos.</p>
 
-              <a class="proj" href="https://github.com/swara2013" target="_blank" rel="noopener">
+            <div class="card-row" style="margin-top:12px;">
+              <article class="card project" aria-label="Project 1">
                 <div class="thumb">P1</div>
                 <div>
-                  <div style="font-weight:700">Project One</div>
-                  <div style="color:#a9c5e2; font-size:0.92rem">A fun web toy that visualizes sound and color. (Edit this description.)</div>
+                  <div style="font-weight:800; color:var(--chinese);">Project One — [Title]</div>
+                  <div class="small" style="margin-top:6px;">Short description — what it does and tech used. Link: <a href="#" style="color:var(--chinese)">repo / demo</a></div>
                 </div>
-              </a>
+              </article>
 
-              <!-- Duplicate or add more projects. Edit the href to point to each repo. -->
+              <article class="card project" aria-label="Project 2">
+                <div class="thumb">P2</div>
+                <div>
+                  <div style="font-weight:800; color:var(--chinese);">Project Two</div>
+                  <div class="small" style="margin-top:6px;">Short description. Link: <a href="#" style="color:var(--chinese)">repo / demo</a></div>
+                </div>
+              </article>
+
+              <!-- Add more project cards similarly -->
             </div>
           </section>
 
-          <section class="card" style="margin-top:14px" aria-labelledby="how">
-            <h2 id="how">How I built this (short)</h2>
-            <ol>
-              <li>Used a single-file HTML template with embedded CSS so the site is easy to upload.</li>
-              <li>Edited text and added project links. To add a custom image, upload assets/avatar.png and replace the inline SVG.</li>
-              <li>Committed the file to a repo named <code>swara2013.github.io</code> and pushed to GitHub.</li>
-            </ol>
-            <p>If you need, add a HOW_I_BUILT_THIS.md file describing the prompts you used with the AI.</p>
+          <!-- INTERESTS -->
+          <section id="panel-interests" class="panel" role="tabpanel" aria-labelledby="tab-interests">
+            <h2 class="section-title">Interests</h2>
+            <p class="lead">What you like to explore — e.g., generative art, UI design, game jams, AI experiments, sound visualization.</p>
+
+            <div class="card-row">
+              <div class="card">
+                <strong>Design & Art</strong>
+                <p class="small">Color theory, mandala patterns, playful UI experiments.</p>
+              </div>
+              <div class="card">
+                <strong>Coding & Prototyping</strong>
+                <p class="small">HTML Canvas, small JS toys, micro-interactions.</p>
+              </div>
+            </div>
           </section>
-        </main>
 
-        <aside class="side">
-          <div class="card" aria-labelledby="contact">
-            <h3 id="contact">Contact & Links</h3>
-            <div class="contact" role="list">
-              <a href="https://github.com/swara2013" target="_blank" rel="noopener">GitHub</a>
-              <a href="mailto:your.email@example.com">Email</a>
-              <a href="https://twitter.com/swara2013" target="_blank" rel="noopener">Twitter</a>
-              <a href="https://linkedin.com/in/swara2013" target="_blank" rel="noopener">LinkedIn</a>
+          <!-- SKILLS -->
+          <section id="panel-skills" class="panel" role="tabpanel" aria-labelledby="tab-skills">
+            <h2 class="section-title">Skills</h2>
+            <p class="lead">Add skills you want to show (you can edit these directly):</p>
+
+            <div class="card-row">
+              <div class="card">
+                <strong>Web</strong>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>HTML & CSS (responsive)</li>
+                  <li>Basic JavaScript</li>
+                </ul>
+              </div>
+              <div class="card">
+                <strong>Tools</strong>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Git & GitHub Pages</li>
+                  <li>Figma / simple graphics</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ACHIEVEMENTS -->
+          <section id="panel-achievements" class="panel" role="tabpanel" aria-labelledby="tab-achievements">
+            <h2 class="section-title">Achievements</h2>
+            <p class="lead">Add awards, hackathon results, course certificates, or notable projects here. Each item should be short and linkable.</p>
+
+            <div class="card-row">
+              <div class="card">
+                <strong>Monthly challenge — 2026</strong>
+                <p class="small">Participated in the community monthly challenge.</p>
+              </div>
+              <div class="card">
+                <strong>Coursework</strong>
+                <p class="small">Completed [Course Name], [Platform]</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- PICTURES -->
+          <section id="panel-pictures" class="panel" role="tabpanel" aria-labelledby="tab-pictures">
+            <h2 class="section-title">Pictures</h2>
+            <p class="lead">Add images to the gallery. Replace the src attributes with your uploaded images (e.g., assets/photo1.jpg).</p>
+
+            <div class="gallery">
+              <!-- placeholders -->
+              <img src="assets/photo1.jpg" alt="Picture 1 — replace">
+              <img src="assets/photo2.jpg" alt="Picture 2 — replace">
+              <img src="assets/photo3.jpg" alt="Picture 3 — replace">
+              <img src="assets/photo4.jpg" alt="Picture 4 — replace">
             </div>
 
-            <div style="margin-top:12px">
-              <strong>Quick checklist</strong>
-              <ul style="margin:8px 0 0 18px; padding:0;">
-                <li>Replace placeholders (name, project links, bio).</li>
-                <li>Add avatar at <code>assets/avatar.png</code> if desired.</li>
-                <li>Push to repo named <code>swara2013.github.io</code>.</li>
-              </ul>
-            </div>
-          </div>
+            <p class="small" style="margin-top:10px;">Tip: upload your images into an assets/ folder in the repo and use relative paths like <code>assets/photo1.jpg</code>.</p>
+          </section>
 
-          <div class="card" style="margin-top:14px;text-align:center">
-            <strong>Share</strong>
-            <p style="margin:8px 0 0 0;color:#9fbfe6">Post your site link in the monthly challenge thread before the deadline.</p>
-          </div>
-        </aside>
+          <!-- CONTACT -->
+          <section id="panel-contact" class="panel" role="tabpanel" aria-labelledby="tab-contact">
+            <h2 class="section-title">Contact</h2>
+            <p class="lead">How people can reach you. Replace placeholders below.</p>
+
+            <div class="card-row">
+              <div class="card">
+                <strong>GitHub</strong>
+                <p class="small"><a href="https://github.com/swara2013" style="color:var(--chinese)">github.com/swara2013</a></p>
+              </div>
+              <div class="card">
+                <strong>Email</strong>
+                <p class="small">your.email@example.com</p>
+              </div>
+              <div class="card">
+                <strong>Social</strong>
+                <p class="small">
+                  <a href="#" style="color:var(--chinese)">Twitter</a> • <a href="#" style="color:var(--chinese)">LinkedIn</a>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- HOW I BUILT THIS -->
+          <section id="panel-how" class="panel" role="tabpanel" aria-labelledby="tab-how">
+            <h2 class="section-title">How I Built This</h2>
+            <p class="lead">Record the steps and the AI prompts you used here so your teacher can verify your work. Example steps:</p>
+
+            <div class="card-row">
+              <div class="card">
+                <strong>Process</strong>
+                <ol style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Used an AI assistant to scaffold the design & code.</li>
+                  <li>Edited the file to add personal content and images.</li>
+                  <li>Published to GitHub Pages (repo: <code>SwaraWebsite</code> or rename to <code>swara2013.github.io</code>).</li>
+                </ol>
+              </div>
+
+              <div class="card">
+                <strong>Prompts (example)</strong>
+                <p class="small" style="margin:6px 0 0 0;">"Create a stylish single-file portfolio using these colors... include tabs for About/Projects/..."</p>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;" class="small">Tip: keep a copy of the exact prompts you used in a file HOW_I_BUILT_THIS.md in the repo for your teacher.</div>
+          </section>
+        </div>
       </div>
 
-      <footer>
-        Built with a little AI + a lot of you. ✨ Replace the placeholders and push to GitHub to publish.
+      <div style="height:26px;"></div>
+      <footer style="text-align:center;color:var(--muted); font-size:0.95rem;">
+        Built by you • customize the placeholders and upload images to <code>assets/</code> • High-contrast mode enabled
       </footer>
+
     </div>
   </div>
 </body>
