@@ -1,14 +1,14 @@
 ---
-title: "YOUR NAME — Fun Portfolio"
-description: "A playful, single-file GitHub Pages site"
+title: "Swara Ananth — Fun Portfolio"
+description: "A personal Github Pages site in Markdown"
 ---
 
 <!--
-  Replace placeholders:
-  - YOUR_NAME -> your real name or display name
-  - YOUR_HANDLE -> your GitHub username (used for links)
-  - assets/avatar.png -> add your avatar image in assets/avatar.png
-  - Replace project links and descriptions
+  About me:
+  - Name: Swara Ananth
+  - Grade: 7th
+  - School: Cupertino Middle School
+  - Hobbies: Singing, dancing, veena, percussion, robotics, coding, art
 -->
 
 <style>
@@ -59,7 +59,7 @@ description: "A playful, single-file GitHub Pages site"
 
 .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
 
-/* Name and tagline */
+/* Swara Ananth - All About Me */
 .h-title {
   display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;
 }
