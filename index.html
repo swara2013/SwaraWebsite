@@ -45,11 +45,7 @@
     .page { min-height:100vh; display:flex; align-items:flex-start; justify-content:center; padding:48px 20px; box-sizing:border-box; }
     .wrap { width:100%; max-width:var(--max-width); position:relative; }
 
-    /* ---------------------------
-       Mandalas: placed to the sides,
-       no bubble or circular mask around them.
-       Use real uploaded PNG/SVG at assets/mandala.png
-       --------------------------- */
+    /* Mandala decorations */
     .mandala {
       position: fixed;
       top: 50%;
@@ -58,17 +54,16 @@
       max-width: 32vw;
       opacity: 0.20;
       pointer-events: none;
-      mix-blend-mode: screen; /* soft tinting on the dark background */
+      mix-blend-mode: screen;
       filter: drop-shadow(0 8px 28px rgba(0,0,0,0.6));
       z-index: 1;
       animation: var(--mandala-anim);
-      image-rendering: optimizeQuality;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
     }
     .mandala.left  { left: -120px; }
-    .mandala.right { right: -120px; transform: translateY(-50%) scaleX(-1); } /* mirror for symmetry */
+    .mandala.right { right: -120px; transform: translateY(-50%) scaleX(-1); }
 
     @keyframes mandalaFloat {
       0% { transform: translateY(-50%) rotate(0deg) scale(1); }
@@ -76,15 +71,11 @@
       100% { transform: translateY(-50%) rotate(0deg) scale(1); }
     }
 
-    /* hide mandalas on small screens so layout stays clear */
     @media (max-width: 880px) {
       .mandala { display: none; }
     }
 
-    /* ---------------------------
-       Header / banner (unchanged structure,
-       adjusted z-index so content sits above mandalas)
-       --------------------------- */
+    /* Header / banner */
     header.banner{
       display:flex; align-items:center; gap:18px; padding:22px; border-radius:16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -92,9 +83,8 @@
       border: 1px solid rgba(255,255,255,0.04);
       backdrop-filter: blur(6px);
       position: relative;
-      z-index: 2; /* ensure content sits above mandalas */
+      z-index: 2;
     }
-
     .site-title {
       font-family: "Londrina Shadow", cursive;
       font-size: clamp(34px, 6vw, 64px);
@@ -106,38 +96,64 @@
     }
     .tagline { color: var(--muted); font-weight:600; font-size:clamp(14px, 1.4vw, 16px); }
 
-    /* Avatar: improve reliability and add fallback */
+    /*
+      AVATAR: Enlarged box and responsive sizing.
+      - Desktop: 160px square image area (with 8px padding)
+      - Tablet/smaller screens: scales down
+      - Fallback initials sized appropriately
+    */
     .avatar {
-      width:110px; height:110px; border-radius:18px; overflow:hidden; padding:6px;
+      width: 160px;
+      height: 160px;
+      border-radius:20px;
+      overflow:hidden;
+      padding:8px;
       background: linear-gradient(135deg, var(--c1), var(--c3));
-      box-shadow: 0 12px 30px rgba(0,0,0,0.55);
-      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+      box-shadow: 0 18px 38px rgba(0,0,0,0.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
       position: relative;
     }
     .avatar img {
-      width:100%; height:100%; object-fit:cover; display:block; border-radius:12px;
+      width:100%;
+      height:100%;
+      object-fit:cover;
       display:block;
+      border-radius:12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
     /* fallback shown if image fails to load */
     .avatar-fallback {
       position:absolute;
-      inset:6px;
+      inset:8px;
       display:flex;
       align-items:center;
       justify-content:center;
       border-radius:12px;
       font-weight:800;
-      font-size:32px;
+      font-size:44px;
       color:#051025;
       background: linear-gradient(135deg, var(--c2), var(--c4));
       text-shadow: 0 2px 0 rgba(255,255,255,0.06);
-      visibility: hidden; /* shown by JS if image fails */
+      visibility: hidden;
     }
 
-    /* keep rest of layout above mandalas */
+    @media (max-width:1100px){
+      .avatar { width: 140px; height:140px; padding:7px; }
+      .avatar-fallback { font-size:38px; inset:7px; }
+    }
+    @media (max-width:680px){
+      .avatar { width: 110px; height:110px; padding:6px; border-radius:16px; }
+      .avatar img { border-radius:10px; }
+      .avatar-fallback { font-size:30px; inset:6px; border-radius:10px; }
+    }
+
+    /* ensure content sits above mandalas */
     .tabs, .panels, footer { position: relative; z-index: 2; }
 
-    /* small responsive tweaks and core styles (kept from previous design) */
+    /* Tabs & panels (kept from earlier design) */
     .tabs { margin-top:18px; }
     .tabs .controls { display:flex; gap:10px; flex-wrap:wrap; background: linear-gradient(90deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); padding:10px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
     .tabs input[type="radio"]{ display:none; }
@@ -172,15 +188,16 @@
     .card { background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008)); border-radius:12px; padding:14px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 6px 6px 18px rgba(2,6,23,0.5), -6px -6px 14px rgba(255,255,255,0.02); }
     h2.section-title { margin:0; color:var(--c1); font-size:1.1rem; }
     p.lead { color:var(--muted); margin-top:8px; }
+
+    .project { display:flex; gap:12px; align-items:center; padding:10px; border-radius:10px; background: linear-gradient(90deg, rgba(255,255,255,0.012), transparent); transition: transform var(--anim-time) ease, box-shadow var(--anim-time) ease; border:1px solid rgba(255,255,255,0.02); }
+    .project:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.55); }
+    .project .thumb { width:56px; height:56px; border-radius:10px; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, var(--c2), var(--c3)); color:#031014; font-weight:800; flex-shrink:0; }
+
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:10px;}
+    .gallery img { width:100%; height:120px; object-fit:cover; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
+
     .small { color:#9dbbe6; font-size:0.92rem; }
-
-    @media (max-width:880px) {
-      .banner { flex-direction:row; gap:12px; padding:14px; align-items:center; }
-      .controls { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none }
-      .tabs label { white-space:nowrap; }
-      .wrap { padding-bottom:60px; }
-    }
-
+    @media (max-width:880px){ .banner { flex-direction:row; gap:12px; padding:14px; align-items:center; } .controls { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none } .tabs label { white-space:nowrap; } .wrap { padding-bottom:60px; } }
     .divider { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); margin:14px 0; border-radius:4px; }
     label:focus, a:focus { outline:3px solid rgba(200,230,255,0.12); outline-offset:3px; }
 
@@ -190,16 +207,13 @@
   <div class="page">
     <div class="wrap" role="main">
 
-      <!-- MANDALAS
-           Place your mandala image at: assets/mandala.png
-           The elements below use the image directly (no circular mask/bubble).
-      -->
+      <!-- Mandalas (place your mandala image at assets/mandala.png) -->
       <div class="mandala left" aria-hidden="true" style="background-image: url('assets/mandala.png');"></div>
       <div class="mandala right" aria-hidden="true" style="background-image: url('assets/mandala.png');"></div>
 
       <header class="banner" role="banner" aria-label="Site header">
         <div class="avatar" aria-hidden="true">
-          <!-- Avatar image (use a public URL or upload to assets/avatar.png) -->
+          <!-- Avatar image: keep the filename exactly as uploaded (assets/avatar.png or correct ext) -->
           <img id="avatar-img" src="assets/avatar.png" alt="Swara Ananth avatar">
           <div id="avatar-fallback" class="avatar-fallback">SA</div>
         </div>
@@ -207,11 +221,10 @@
         <div class="title">
           <h1 class="site-title">Swara Ananth</h1>
           <div class="tagline">[Add a short tagline here — e.g. Student • Maker • Designer]</div>
-          <div class="small" style="margin-top:8px;">Palette updated • mandalas moved to sides • high-contrast • glass + neumorphism</div>
+          <div class="small" style="margin-top:8px;">Palette updated • mandalas on sides • enlarged avatar • high-contrast • glass + neumorphism</div>
         </div>
       </header>
 
-      <!-- Tabs & panels (unchanged content structure) -->
       <div class="tabs" role="tablist" aria-label="Main sections">
         <input type="radio" id="tab-about" name="tabs" checked>
         <input type="radio" id="tab-projects" name="tabs">
@@ -258,11 +271,11 @@
             </div>
           </section>
 
-          <!-- (Other panels: projects / interests / skills / achievements / pictures / contact / how) -->
-          <!-- Copy the panel markup from your previous file into the sections below if needed. -->
+          <!-- PROJECTS -->
           <section id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
             <h2 class="section-title">Projects</h2>
             <p class="lead">Replace placeholders below with your repo URLs or live demos.</p>
+
             <div class="card-row" style="margin-top:12px;">
               <article class="card project" aria-label="Project 1">
                 <div class="thumb" style="background:linear-gradient(135deg,var(--c1),var(--c3));">P1</div>
@@ -271,6 +284,7 @@
                   <div class="small" style="margin-top:6px;">Short description — what it does and tech used. Link: <a href="#" style="color:var(--c1)">repo / demo</a></div>
                 </div>
               </article>
+
               <article class="card project" aria-label="Project 2">
                 <div class="thumb" style="background:linear-gradient(135deg,var(--c2),var(--c4));">P2</div>
                 <div>
@@ -281,7 +295,7 @@
             </div>
           </section>
 
-          <!-- Other panels omitted here for brevity — keep the content you already have -->
+          <!-- Remaining panels (interests / skills / achievements / pictures / contact / how) -->
           <section id="panel-interests" class="panel" role="tabpanel" aria-labelledby="tab-interests">
             <h2 class="section-title">Interests</h2>
             <p class="lead">What you like to explore — e.g., generative art, UI design, game jams, AI experiments, sound visualization.</p>
@@ -329,16 +343,13 @@
       const img = document.getElementById('avatar-img');
       const fallback = document.getElementById('avatar-fallback');
       if (!img) return;
-      // if img fails to load -> show fallback
       img.addEventListener('error', () => {
         img.style.display = 'none';
         fallback.style.visibility = 'visible';
       });
-      // if image loads, hide fallback
       img.addEventListener('load', () => {
         fallback.style.visibility = 'hidden';
       });
-      // If image src is missing or not reachable, quickly check
       setTimeout(()=> {
         if (!img.complete || img.naturalWidth === 0) {
           img.style.display = 'none';
