@@ -1,126 +1,145 @@
 ---
-title: "Hi — I'm Swara"
-description: "Personal site built with AI + GitHub Pages"
-permalink: /
-layout: null
+title: "YOUR NAME — Fun Portfolio"
+description: "A playful, single-file GitHub Pages site"
 ---
 
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hi — I'm Swara</title>
-  <meta name="description" content="Personal site built with AI + GitHub Pages" />
-  <link rel="stylesheet" href="/assets/style.css" />
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <img class="avatar" src="https://ui-avatars.com/api/?name=Swara&background=0D8ABC&color=fff&size=256" alt="Swara avatar" />
-        <div>
-          <h1>Hi — I'm Swara</h1>
-          <p class="lead">Developer • Creator • Learner</p>
-        </div>
-      </div>
+<!--
+  Replace placeholders:
+  - YOUR_NAME -> your real name or display name
+  - YOUR_HANDLE -> your GitHub username (used for links)
+  - assets/avatar.png -> add your avatar image in assets/avatar.png
+  - Replace project links and descriptions
+-->
 
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<style>
+:root{
+  --bg-1: #0f172a;
+  --bg-2: #0b1222;
+  --accent: #ff6b6b;
+  --accent-2: #6bdbff;
+  --glass: rgba(255,255,255,0.06);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #e6eef8;
+}
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <h2>Crafting beautiful, useful things on the web.</h2>
-        <p class="hero-sub">I build small web apps, experiment with AI tools, and write short notes about what I learn. This site is a simple GitHub Pages site built from a Markdown/HTML file and a CSS stylesheet.</p>
-        <p class="cta-row">
-          <a class="btn primary" href="#projects">See projects</a>
-          <a class="btn ghost" href="https://github.com/swara2013" target="_blank" rel="noopener">GitHub</a>
-        </p>
+/* Page layout */
+.page {
+  min-height: 100vh;
+  padding: 40px 16px;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(107,219,255,0.06), transparent),
+              linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
-        <div class="badges">
-          <span class="badge">Open Source</span>
-          <span class="badge">AI & Web</span>
-          <span class="badge">Maker</span>
-        </div>
-      </div>
+.container {
+  max-width: 980px;
+  width: 100%;
+}
 
-      <aside class="hero-right">
-        <div class="card profile-card">
-          <img class="card-avatar" src="https://ui-avatars.com/api/?name=Swara&background=0D8ABC&color=fff&size=128" alt="avatar" />
-          <h3>Swara</h3>
-          <p class="muted">Web developer and curious tinkerer. Currently exploring AI + creative tooling.</p>
-          <div class="socials">
-            <a href="https://github.com/swara2013" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener">X</a>
-            <a href="mailto:you@example.com">Email</a>
-          </div>
-        </div>
-      </aside>
-    </section>
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 28px;
+}
 
-    <section id="about" class="section">
-      <h2>About me</h2>
-      <p>I'm a developer/designer who enjoys building polished small apps and learning new tools. I often use AI assistants to prototype content and iterate quickly.</p>
-      <ul class="meta-list">
-        <li><strong>Location:</strong> [Your City]</li>
-        <li><strong>Work:</strong> [Your Role / Company]</li>
-        <li><strong>Interests:</strong> web, open source, AI, photography</li>
-      </ul>
-    </section>
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
+  padding: 4px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 2px 8px rgba(107,219,255,0.06) inset;
+}
 
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <div class="projects-grid">
-        <article class="card project-card">
-          <h3>Project One</h3>
-          <p class="muted">A short description of project one. Built with HTML/CSS/JS.</p>
-          <p class="card-foot"><a href="https://github.com/your/repo" target="_blank" rel="noopener">View repo</a></p>
-        </article>
+.avatar img { width:100%; height:100%; object-fit:cover; display:block; }
 
-        <article class="card project-card">
-          <h3>Project Two</h3>
-          <p class="muted">A demo project that showcases an AI-powered helper.</p>
-          <p class="card-foot"><a href="https://your-demo.com" target="_blank" rel="noopener">Live demo</a></p>
-        </article>
+/* Name and tagline */
+.h-title {
+  display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;
+}
+.h-title h1{
+  margin:0;
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+  line-height:1;
+  letter-spacing: -0.5px;
+}
+.tagline {
+  color: #cfe8ff;
+  margin-top:6px;
+  font-size: 0.95rem;
+}
 
-        <article class="card project-card">
-          <h3>Project Three</h3>
-          <p class="muted">Experiment with visuals and data-driven UI. Add more details here.</p>
-          <p class="card-foot"><a href="#" target="_blank" rel="noopener">Learn more</a></p>
-        </article>
-      </div>
-    </section>
+/* Floating shapes */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  filter: blur(18px);
+  transform: translateZ(0);
+  pointer-events: none;
+}
+.shape.s1 { width:220px; height:220px; background: linear-gradient(90deg,var(--accent),#ffd66b); top: -40px; left: -40px; animation: float1 8s ease-in-out infinite; }
+.shape.s2 { width:160px; height:160px; background: linear-gradient(90deg,var(--accent-2),#7b6bff); bottom: -60px; right: -40px; animation: float2 9s ease-in-out infinite; }
 
-    <section id="how" class="section">
-      <h2>How I built this</h2>
-      <p>This page is a Markdown file (with HTML) plus a CSS file. To reproduce:</p>
-      <pre class="code-block"># create repo and push
-git init
-git branch -M main
-git remote add origin https://github.com/swara2013/swara2013.github.io.git
-# add files
-git add index.md assets/style.css
-git commit -m "Add site with fancy layout"
-git push -u origin main</pre>
-      <p>GitHub Pages will serve the repository at <a href="https://swara2013.github.io" target="_blank" rel="noopener">https://swara2013.github.io</a>.</p>
-    </section>
+@keyframes float1 { 0% { transform: translateY(0); } 50% { transform: translateY(12px); } 100% { transform: translateY(0); } }
+@keyframes float2 { 0% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(12deg); } 100% { transform: translateY(0) rotate(0deg); } }
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Want to collaborate or say hi? <a href="mailto:you@example.com">you@example.com</a></p>
-    </section>
-  </main>
+/* Content sections */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  align-items: start;
+}
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 Swara — Built with a bit of AI and a lot of curiosity.</p>
-    </div>
-  </footer>
-</body>
-</html>
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Projects */
+.projects {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+.project {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:10px;
+  border-radius:10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  transition: transform .18s ease, box-shadow .18s ease;
+  cursor: pointer;
+}
+.project:hover { transform: translateY(-6px); box-shadow: 0 14px 34px rgba(2,6,23,0.6); }
+.p-thumb {
+  width:56px; height:56px; border-radius:10px; flex: 0 0 56px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); display:flex; align-items:center; justify-content:center; color:#051025; font-weight:700;
+}
+
+/* Sidebar */
+.side {
+  position:relative;
+}
+.badge {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background: linear-gradient(90deg,var(--accent-2),var(--accent));
+  color:#051025;
+  font-weight:700;
+  font-size:0.85rem;
+  margin-bottom:12px;
+}
+
+/* Contact
