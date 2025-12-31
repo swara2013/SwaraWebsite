@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>swara2013 — Fun Portfolio</title>
+  <meta name="description" content="A playful GitHub Pages site for swara2013" />
+  <!--
+    Single-file site:
+    - Replace the display name "swara2013" below with your real name if you want.
+    - Edit project links (look for links that include YOUR_HANDLE or swara2013).
+    - To add a custom avatar, replace the <svg> inside .avatar with an <img src="assets/avatar.png"> and upload that file.
+  -->
+  <style>
+    :root{
+      --bg-1:#071126; --bg-2:#0b1630;
+      --accent:#ff6b6b; --accent-2:#6bdbff;
+      --card: rgba(255,255,255,0.03);
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#e6eef8;
+    }
+    html,body{height:100%; margin:0; background:
+      radial-gradient(800px 400px at 10% 10%, rgba(107,219,255,0.06), transparent),
+      linear-gradient(180deg,var(--bg-1),var(--bg-2));}
+    .wrap{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:36px;}
+    .site{max-width:980px; width:100%; position:relative; box-sizing:border-box;}
+    /* floating shapes */
+    .shape{position:absolute;border-radius:50%;opacity:0.12;filter:blur(18px);pointer-events:none;}
+    .s1{width:220px;height:220px;background:linear-gradient(90deg,var(--accent),#ffd66b);top:-40px;left:-40px;animation:float1 8s ease-in-out infinite}
+    .s2{width:160px;height:160px;background:linear-gradient(90deg,var(--accent-2),#7b6bff);bottom:-60px;right:-40px;animation:float2 9s ease-in-out infinite}
+    @keyframes float1{0%{transform:translateY(0)}50%{transform:translateY(12px)}100%{transform:translateY(0)}}
+    @keyframes float2{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(12deg)}100%{transform:translateY(0) rotate(0deg)}}
+
+    /* header */
+    .hero{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;margin-bottom:24px}
+    .avatar{width:96px;height:96px;border-radius:16px;padding:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 30px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}
+    .avatar svg{width:100%;height:100%;display:block;border-radius:10px}
+    .title h1{margin:0;font-size:clamp(1.3rem,3.4vw,2.0rem);letter-spacing:-0.4px}
+    .tag{color:#cfe8ff;margin-top:6px;font-size:0.95rem}
+    .meta{margin-top:10px;display:flex;gap:8px;align-items:center}
+
+    /* layout */
+    .cols{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    h2{margin:0 0 10px 0}
+    .projects{display:grid;gap:10px}
+    .proj{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,0.01),transparent);text-decoration:none;color:inherit;transition:transform .16s ease,box-shadow .16s ease}
+    .proj:hover{transform:translateY(-6px);box-shadow:0 14px 34px rgba(2,6,23,0.6)}
+    .thumb{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#051025;font-weight:700}
+    .side .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#051025;font-weight:700}
+
+    .contact{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .contact a{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);color:#dff3ff;text-decoration:none;font-weight:600}
+    .contact a:hover{background:linear-gradient(90deg,var(--accent-2),var(--accent));color:#051025;transform:translateY(-4px)}
+
+    footer{margin-top:18px;text-align:center;color:#a9c5e2;font-size:0.9rem}
+
+    @media (max-width:900px){.hero{grid-template-columns:80px 1fr}.cols{grid-template-columns:1fr}.side{order:3}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="site" role="main">
+      <div class="shape s1" aria-hidden="true"></div>
+      <div class="shape s2" aria-hidden="true"></div>
+
+      <header class="hero" aria-label="Introduction">
+        <div class="avatar" aria-hidden="true">
+          <!-- Inline SVG avatar (replace with <img src="assets/avatar.png" alt="..."> if you add an image file) -->
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#ff6b6b"/>
+                <stop offset="1" stop-color="#6bdbff"/>
+              </linearGradient>
+            </defs>
+            <rect rx="12" width="100" height="100" fill="url(#g)"></rect>
+            <text x="50" y="58" font-family="Inter, system-ui, sans-serif" font-size="46" text-anchor="middle" fill="#051025" font-weight="700">S</text>
+          </svg>
+        </div>
+
+        <div class="title">
+          <h1>Hi — I'm swara2013 <span style="font-size:0.9rem">🎨🚀</span></h1>
+          <div class="tag">I build playful projects, learn by doing, and enjoy creative uses of AI. Student • Maker • Curious</div>
+
+          <div class="meta">
+            <span class="badge" style="background:linear-gradient(90deg,#6bdbff,#ff6b6b); color:#051025; padding:6px 10px; border-radius:999px; font-weight:700;">Deadline: Jan 4, 2026</span>
+            <div style="color:#cfe8ff; font-weight:600; margin-left:8px;">Fun portfolio challenge</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="cols" aria-label="Content area">
+        <main>
+          <section class="card" aria-labelledby="about">
+            <h2 id="about">About me</h2>
+            <p>Hello — I'm a student building small web projects and experimenting with AI. I like colorful design and learning by doing. Replace this paragraph with your own short bio.</p>
+
+            <h3 style="margin-top:12px">What I'm learning</h3>
+            <ul>
+              <li>HTML & CSS (responsive design)</li>
+              <li>Git & GitHub Pages</li>
+              <li>JavaScript basics</li>
+            </ul>
+          </section>
+
+          <section class="card" style="margin-top:14px" aria-labelledby="projects">
+            <h2 id="projects">Projects</h2>
+            <div class="projects">
+              <a class="proj" href="https://github.com/swara2013" target="_blank" rel="noopener">
+                <div class="thumb">GH</div>
+                <div>
+                  <div style="font-weight:700">My GitHub</div>
+                  <div style="color:#a9c5e2; font-size:0.92rem">All my repos and projects live here. Replace with specific project links.</div>
+                </div>
+              </a>
+
+              <a class="proj" href="https://github.com/swara2013" target="_blank" rel="noopener">
+                <div class="thumb">P1</div>
+                <div>
+                  <div style="font-weight:700">Project One</div>
+                  <div style="color:#a9c5e2; font-size:0.92rem">A fun web toy that visualizes sound and color. (Edit this description.)</div>
+                </div>
+              </a>
+
+              <!-- Duplicate or add more projects. Edit the href to point to each repo. -->
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px" aria-labelledby="how">
+            <h2 id="how">How I built this (short)</h2>
+            <ol>
+              <li>Used a single-file HTML template with embedded CSS so the site is easy to upload.</li>
+              <li>Edited text and added project links. To add a custom image, upload assets/avatar.png and replace the inline SVG.</li>
+              <li>Committed the file to a repo named <code>swara2013.github.io</code> and pushed to GitHub.</li>
+            </ol>
+            <p>If you need, add a HOW_I_BUILT_THIS.md file describing the prompts you used with the AI.</p>
+          </section>
+        </main>
+
+        <aside class="side">
+          <div class="card" aria-labelledby="contact">
+            <h3 id="contact">Contact & Links</h3>
+            <div class="contact" role="list">
+              <a href="https://github.com/swara2013" target="_blank" rel="noopener">GitHub</a>
+              <a href="mailto:your.email@example.com">Email</a>
+              <a href="https://twitter.com/swara2013" target="_blank" rel="noopener">Twitter</a>
+              <a href="https://linkedin.com/in/swara2013" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+
+            <div style="margin-top:12px">
+              <strong>Quick checklist</strong>
+              <ul style="margin:8px 0 0 18px; padding:0;">
+                <li>Replace placeholders (name, project links, bio).</li>
+                <li>Add avatar at <code>assets/avatar.png</code> if desired.</li>
+                <li>Push to repo named <code>swara2013.github.io</code>.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:14px;text-align:center">
+            <strong>Share</strong>
+            <p style="margin:8px 0 0 0;color:#9fbfe6">Post your site link in the monthly challenge thread before the deadline.</p>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        Built with a little AI + a lot of you. ✨ Replace the placeholders and push to GitHub to publish.
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
