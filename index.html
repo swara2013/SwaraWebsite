@@ -6,11 +6,11 @@
   <title>Swara Ananth — Portfolio</title>
   <meta name="description" content="Swara Ananth — personal site" />
 
-  <!-- Google Fonts: Londrina Shadow for the title, Anaheim for body -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Anaheim&display=swap" rel="stylesheet">
 
   <style>
-    /* Color palette */
+    /* === Color palette (exact values you provided) === */
     :root{
       --cerulean: #2E5DB5;
       --pigment:  #2D349D;
@@ -18,25 +18,26 @@
       --bud:      #7BB662;
       --chinese:  #D0DB61;
 
-      --bg-dark:  linear-gradient(180deg, #07122a 0%, #071534 60%);
+      --bg-1: #07122a;
+      --bg-2: #071534;
       --glass: rgba(255,255,255,0.04);
-      --accent-grad: linear-gradient(90deg,var(--cerulean),var(--pigment));
       --text-high: #F7FBFF;
       --muted: #B7D0FF;
       --max-width: 1100px;
     }
 
-    /* Respect reduced motion */
+    /* Respect reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
-      :root { --anim-time: 0.01s; }
+      :root { --anim-time: 20ms; --mandala-anim: none; }
     }
-    :root { --anim-time: 360ms; }
+    :root { --anim-time: 360ms; --mandala-anim: mandalaFloat 10s ease-in-out infinite; }
 
     html,body{
       height:100%;
       margin:0;
       font-family: "Anaheim", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg-dark);
+      background: radial-gradient(800px 400px at 10% 10%, rgba(46,93,181,0.06), transparent),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
       color: var(--text-high);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
@@ -57,24 +58,26 @@
       position:relative;
     }
 
-    /* Decorative mandala in background (subtle) */
+    /* === Mandala decorations (now bolder/visible and using your palette) === */
     .mandala {
       position:absolute;
-      right:-60px;
-      top:-40px;
-      width:420px;
-      height:420px;
-      opacity:0.08;
       pointer-events:none;
-      filter: blur(1px);
+      filter: drop-shadow(0 10px 40px rgba(2,6,23,0.55));
+      opacity:0.18;
+      transform-origin:center;
+      mix-blend-mode: screen;
+      animation: var(--mandala-anim);
     }
-    .mandala.left {
-      left:-80px; top:40%;
-      transform:translateY(-50%) rotate(12deg);
-      opacity:0.06;
+    .mandala.right { right:-80px; top:-40px; width:420px; height:420px; transform: rotate(6deg); }
+    .mandala.left  { left:-90px; bottom:-80px; width:380px; height:380px; transform: rotate(-14deg); opacity:0.14; }
+
+    @keyframes mandalaFloat {
+      0%   { transform: translateY(0) rotate(0deg); }
+      50%  { transform: translateY(-12px) rotate(6deg); }
+      100% { transform: translateY(0) rotate(0deg); }
     }
 
-    /* Banner / header */
+    /* Header / banner */
     header.banner{
       display:flex;
       align-items:center;
@@ -98,14 +101,15 @@
 
     .site-title {
       font-family: "Londrina Shadow", cursive;
-      font-size: clamp(34px, 6vw, 56px);
+      font-size: clamp(34px, 6vw, 64px);
       line-height:1;
-      color: var(--chinese);
-      text-shadow:
-        0 2px 0 rgba(0,0,0,0.55),
-        0 6px 22px rgba(45,52,157,0.12);
       margin:0;
-      letter-spacing: -1px;
+      /* title uses a bright gradient from your palette */
+      background: linear-gradient(90deg, var(--chinese), var(--bud), var(--teal));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 6px 18px rgba(2,6,23,0.45);
     }
 
     .tagline {
@@ -114,13 +118,13 @@
       font-size:clamp(14px, 1.4vw, 16px);
     }
 
-    /* Avatar */
+    /* Avatar - stronger accent using palette */
     .avatar {
-      width:96px; height:96px;
+      width:110px; height:110px;
       border-radius:18px;
       overflow:hidden;
       padding:6px;
-      background: var(--accent-grad);
+      background: linear-gradient(135deg, var(--cerulean), var(--pigment));
       box-shadow: 0 12px 30px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
       flex-shrink:0;
       display:flex;
@@ -129,7 +133,7 @@
     }
     .avatar img { width:100%; height:100%; object-fit:cover; display:block; border-radius:12px; }
 
-    /* Navigation tabs (radio buttons method) */
+    /* Tabs (radio + labels) */
     .tabs { margin-top:18px; }
     .tabs .controls {
       display:flex; gap:10px; flex-wrap:wrap;
@@ -148,12 +152,11 @@
       font-weight:700;
       font-size:0.95rem;
       transition: all var(--anim-time) ease;
-      box-shadow: none;
       background:transparent;
       border: 1px solid transparent;
     }
 
-    /* checked tab styling: glass + accent outline + neumorphism lift */
+    /* Active tab = glass button with accent outline (use pigment and cerulean) */
     .tabs input#tab-about:checked ~ .controls label[for="tab-about"],
     .tabs input#tab-projects:checked ~ .controls label[for="tab-projects"],
     .tabs input#tab-interests:checked ~ .controls label[for="tab-interests"],
@@ -163,18 +166,18 @@
     .tabs input#tab-contact:checked ~ .controls label[for="tab-contact"],
     .tabs input#tab-how:checked ~ .controls label[for="tab-how"] {
       color: #051025;
-      background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.88));
+      background: linear-gradient(90deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
       box-shadow:
         6px 6px 16px rgba(2,6,23,0.55),
         -6px -6px 12px rgba(255,255,255,0.02);
       border: 1px solid rgba(255,255,255,0.55);
     }
 
-    /* Panels area */
+    /* Panels */
     .panels {
       margin-top:18px;
       display:block;
-      min-height:420px;
+      min-height:460px;
     }
     .panel {
       display:none;
@@ -205,7 +208,7 @@
       to   { opacity:1; transform: translateY(0); }
     }
 
-    /* Cards and glass/neumorphism elements inside panels */
+    /* Cards and rows */
     .card-row { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:14px; margin-top:12px; }
     .card {
       background: linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.008));
@@ -217,7 +220,7 @@
     h2.section-title { margin:0; color:var(--chinese); font-size:1.1rem; }
     p.lead { color:var(--muted); margin-top:8px; }
 
-    /* Projects list */
+    /* Project items */
     .project {
       display:flex; gap:12px; align-items:center; padding:10px; border-radius:10px;
       background: linear-gradient(90deg, rgba(255,255,255,0.012), transparent);
@@ -239,7 +242,7 @@
     .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:10px;}
     .gallery img { width:100%; height:120px; object-fit:cover; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
 
-    /* Footer / small text */
+    /* footer small */
     .small { color:#9dbbe6; font-size:0.92rem; }
 
     /* Responsive */
@@ -251,56 +254,80 @@
       .wrap { padding-bottom:60px; }
     }
 
-    /* Utility: subtle divider */
+    /* Divider */
     .divider { height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent); margin:14px 0; border-radius:4px; }
 
-    /* Accessibility: focus */
+    /* Focus */
     label:focus, a:focus { outline:3px solid rgba(200,230,255,0.12); outline-offset:3px; }
-
   </style>
 </head>
 <body>
   <div class="page">
     <div class="wrap" role="main">
 
-      <!-- decorative mandalas (SVGs) -->
-      <svg class="mandala" viewBox="0 0 200 200" aria-hidden="true">
-        <!-- simple mandala-like rings -->
+      <!-- Mandala SVGs (visible and using your palette) -->
+      <svg class="mandala right" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
         <defs>
-          <linearGradient id="mg" x1="0" x2="1">
+          <linearGradient id="mgrad1" x1="0" x2="1">
             <stop offset="0" stop-color="#2E5DB5"/>
+            <stop offset="0.5" stop-color="#008082"/>
             <stop offset="1" stop-color="#2D349D"/>
           </linearGradient>
+          <linearGradient id="mfill1" x1="0" x2="1">
+            <stop offset="0" stop-color="#D0DB61" stop-opacity="0.65"/>
+            <stop offset="1" stop-color="#7BB662" stop-opacity="0.65"/>
+          </linearGradient>
         </defs>
-        <g fill="none" stroke="url(#mg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="100" cy="100" r="60" opacity="0.9"/>
-          <circle cx="100" cy="100" r="40" opacity="0.7"/>
-          <g transform="rotate(22 100 100)">
-            <path d="M100 40 L108 62 L132 62 L112 78 L120 100 L100 86 L80 100 L88 78 L68 62 L92 62 Z" opacity="0.6"/>
+
+        <!-- concentric shapes to look mandala-like -->
+        <g transform="translate(120,120)" stroke="url(#mgrad1)" stroke-width="2" fill="none" stroke-linecap="round">
+          <circle r="70" />
+          <circle r="48" />
+          <g transform="rotate(0)">
+            <path d="M70 0 L88 12 L100 0 L88 -12 Z" fill="url(#mfill1)" stroke="none" opacity="0.9"/>
+            <g transform="rotate(30)"><path d="M70 0 L88 12 L100 0 L88 -12 Z" fill="url(#mfill1)" stroke="none" opacity="0.75"/></g>
+            <g transform="rotate(60)"><path d="M70 0 L88 12 L100 0 L88 -12 Z" fill="url(#mfill1)" stroke="none" opacity="0.65"/></g>
+            <g transform="rotate(90)"><path d="M70 0 L88 12 L100 0 L88 -12 Z" fill="url(#mfill1)" stroke="none" opacity="0.75"/></g>
+            <g transform="rotate(120)"><path d="M70 0 L88 12 L100 0 L88 -12 Z" fill="url(#mfill1)" stroke="none" opacity="0.85"/></g>
+          </g>
+        </g>
+      </svg>
+
+      <svg class="mandala left" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="mgrad2" x1="0" x2="1">
+            <stop offset="0" stop-color="#7BB662"/>
+            <stop offset="1" stop-color="#D0DB61"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(100,100)" stroke="url(#mgrad2)" stroke-width="1.6" fill="none">
+          <circle r="56" opacity="0.95"/>
+          <circle r="36" opacity="0.7"/>
+          <g transform="rotate(15)">
+            <path d="M56 0 L64 8 L74 0 L64 -8 Z" fill="#2E5DB5" opacity="0.55"/>
+            <g transform="rotate(45)"><path d="M56 0 L64 8 L74 0 L64 -8 Z" fill="#2D349D" opacity="0.45"/></g>
+            <g transform="rotate(90)"><path d="M56 0 L64 8 L74 0 L64 -8 Z" fill="#008082" opacity="0.45"/></g>
           </g>
         </g>
       </svg>
 
       <header class="banner" role="banner" aria-label="Site header">
         <div class="avatar" aria-hidden="true">
-          <!--
-            Replace the src below with a public URL or upload an image to your repo and use a relative path like:
-            <img src="assets/avatar.png" alt="Swara Ananth">
-            NOTE: the Gmail attachment URL you gave likely requires authentication and won't appear publicly.
-          -->
+          <!-- Replace with a public URL or upload to repo as assets/avatar.png and keep the relative path -->
+          <!-- The Gmail attachment link you provided is not publicly accessible; upload image to repo instead. -->
           <img src="assets/avatar.png" alt="Avatar — replace with your image" onerror="this.style.display='none'">
         </div>
 
         <div class="title">
           <h1 class="site-title">Swara Ananth</h1>
           <div class="tagline">[Add a short tagline here — e.g. Student • Maker • Designer]</div>
-          <div class="small" style="margin-top:8px;">Colorful, stylish portfolio • high-contrast • glass + neumorphism</div>
+          <div class="small" style="margin-top:8px; color:var(--muted);">Palette: Cerulean • Pigment • Teal • Bud • Chinese Green — glass & neumorphism</div>
         </div>
       </header>
 
       <!-- Tabs -->
       <div class="tabs" role="tablist" aria-label="Main sections">
-        <!-- Radio inputs (one checked by default) -->
+        <!-- Radio inputs -->
         <input type="radio" id="tab-about" name="tabs" checked>
         <input type="radio" id="tab-projects" name="tabs">
         <input type="radio" id="tab-interests" name="tabs">
@@ -310,7 +337,7 @@
         <input type="radio" id="tab-contact" name="tabs">
         <input type="radio" id="tab-how" name="tabs">
 
-        <!-- Labels act as tabs -->
+        <!-- Labels as tabs -->
         <div class="controls" role="presentation">
           <label for="tab-about" role="tab" aria-controls="panel-about">About</label>
           <label for="tab-projects" role="tab" aria-controls="panel-projects">Projects</label>
@@ -326,7 +353,7 @@
           <!-- ABOUT -->
           <section id="panel-about" class="panel" role="tabpanel" aria-labelledby="tab-about">
             <h2 class="section-title">About Me</h2>
-            <p class="lead">Replace this paragraph with your bio. You said you'd insert the text directly — add 2–4 sentences describing yourself, your studies, and what you enjoy building.</p>
+            <p class="lead">Replace this paragraph with your bio. Add 2–4 sentences describing yourself, your studies, and what you enjoy building.</p>
 
             <div class="divider"></div>
 
@@ -342,7 +369,7 @@
 
               <div class="card">
                 <h3 style="margin:0 0 6px 0;">Current focus</h3>
-                <p class="small" style="margin:0;">Learning web design, experimenting with creative coding, and documenting my projects for the monthly challenge.</p>
+                <p class="small" style="margin:0;">Learning web design, experimenting with creative coding, and documenting projects for the monthly challenge.</p>
               </div>
             </div>
           </section>
@@ -350,11 +377,11 @@
           <!-- PROJECTS -->
           <section id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
             <h2 class="section-title">Projects</h2>
-            <p class="lead">List and link your projects. Replace the placeholders below with your repo URLs or live demos.</p>
+            <p class="lead">Replace placeholders below with your repo URLs or live demos.</p>
 
             <div class="card-row" style="margin-top:12px;">
               <article class="card project" aria-label="Project 1">
-                <div class="thumb">P1</div>
+                <div class="thumb" style="background:linear-gradient(135deg,var(--cerulean),var(--pigment));">P1</div>
                 <div>
                   <div style="font-weight:800; color:var(--chinese);">Project One — [Title]</div>
                   <div class="small" style="margin-top:6px;">Short description — what it does and tech used. Link: <a href="#" style="color:var(--chinese)">repo / demo</a></div>
@@ -362,14 +389,12 @@
               </article>
 
               <article class="card project" aria-label="Project 2">
-                <div class="thumb">P2</div>
+                <div class="thumb" style="background:linear-gradient(135deg,var(--teal),var(--bud));">P2</div>
                 <div>
                   <div style="font-weight:800; color:var(--chinese);">Project Two</div>
                   <div class="small" style="margin-top:6px;">Short description. Link: <a href="#" style="color:var(--chinese)">repo / demo</a></div>
                 </div>
               </article>
-
-              <!-- Add more project cards similarly -->
             </div>
           </section>
 
@@ -393,7 +418,7 @@
           <!-- SKILLS -->
           <section id="panel-skills" class="panel" role="tabpanel" aria-labelledby="tab-skills">
             <h2 class="section-title">Skills</h2>
-            <p class="lead">Add skills you want to show (you can edit these directly):</p>
+            <p class="lead">Add skills you want to show (edit directly):</p>
 
             <div class="card-row">
               <div class="card">
@@ -416,7 +441,7 @@
           <!-- ACHIEVEMENTS -->
           <section id="panel-achievements" class="panel" role="tabpanel" aria-labelledby="tab-achievements">
             <h2 class="section-title">Achievements</h2>
-            <p class="lead">Add awards, hackathon results, course certificates, or notable projects here. Each item should be short and linkable.</p>
+            <p class="lead">Add awards, hackathon results, course certificates, or notable projects here.</p>
 
             <div class="card-row">
               <div class="card">
@@ -433,17 +458,16 @@
           <!-- PICTURES -->
           <section id="panel-pictures" class="panel" role="tabpanel" aria-labelledby="tab-pictures">
             <h2 class="section-title">Pictures</h2>
-            <p class="lead">Add images to the gallery. Replace the src attributes with your uploaded images (e.g., assets/photo1.jpg).</p>
+            <p class="lead">Replace the src with your uploaded images (e.g., assets/photo1.jpg).</p>
 
             <div class="gallery">
-              <!-- placeholders -->
               <img src="assets/photo1.jpg" alt="Picture 1 — replace">
               <img src="assets/photo2.jpg" alt="Picture 2 — replace">
               <img src="assets/photo3.jpg" alt="Picture 3 — replace">
               <img src="assets/photo4.jpg" alt="Picture 4 — replace">
             </div>
 
-            <p class="small" style="margin-top:10px;">Tip: upload your images into an assets/ folder in the repo and use relative paths like <code>assets/photo1.jpg</code>.</p>
+            <p class="small" style="margin-top:10px;">Tip: upload images into an assets/ folder and use the same filenames or edit the paths.</p>
           </section>
 
           <!-- CONTACT -->
@@ -472,7 +496,7 @@
           <!-- HOW I BUILT THIS -->
           <section id="panel-how" class="panel" role="tabpanel" aria-labelledby="tab-how">
             <h2 class="section-title">How I Built This</h2>
-            <p class="lead">Record the steps and the AI prompts you used here so your teacher can verify your work. Example steps:</p>
+            <p class="lead">Keep a short log here for your teacher. Save the exact prompts in HOW_I_BUILT_THIS.md in the repo.</p>
 
             <div class="card-row">
               <div class="card">
@@ -485,12 +509,12 @@
               </div>
 
               <div class="card">
-                <strong>Prompts (example)</strong>
-                <p class="small" style="margin:6px 0 0 0;">"Create a stylish single-file portfolio using these colors... include tabs for About/Projects/..."</p>
+                <strong>Example prompt</strong>
+                <p class="small" style="margin:6px 0 0 0;">"Create a stylish single-file portfolio with tabs and a mandala-decorated background using these exact colors..."</p>
               </div>
             </div>
 
-            <div style="margin-top:12px;" class="small">Tip: keep a copy of the exact prompts you used in a file HOW_I_BUILT_THIS.md in the repo for your teacher.</div>
+            <div style="margin-top:12px;" class="small">Tip: include the exact prompts you used in HOW_I_BUILT_THIS.md for easy verification by your teacher.</div>
           </section>
         </div>
       </div>
