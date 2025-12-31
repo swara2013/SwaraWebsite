@@ -45,25 +45,40 @@
     .page { min-height:100vh; display:flex; align-items:flex-start; justify-content:center; padding:48px 20px; box-sizing:border-box; }
     .wrap { width:100%; max-width:var(--max-width); position:relative; }
 
-    /* Mandala decorations */
+    /* ===============================
+       MANDALAS (img-based) — made highly visible
+       - Uses <img> elements so browser shows broken icon if file missing (easier to debug)
+       - Stronger contrast + colored glow via multiple drop-shadow layers
+       - mix-blend-mode set to normal to avoid unintended blending with dark bg
+       - Opacity increased so lines show
+       =============================== */
     .mandala {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      width: 420px;
-      max-width: 32vw;
-      opacity: 0.20;
+      width: 460px;
+      max-width: 34vw;
+      opacity: 0.95; /* high so lines are clear */
       pointer-events: none;
-      mix-blend-mode: screen;
-      filter: drop-shadow(0 8px 28px rgba(0,0,0,0.6));
+      mix-blend-mode: normal; /* avoid making dark lines invisible on dark bg */
       z-index: 1;
       animation: var(--mandala-anim);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
+      object-fit: contain;
+      image-rendering: optimizeQuality;
+      /* Enhance line visibility and add colorful glow:
+         - contrast & brightness make thin dark strokes stronger
+         - multiple drop-shadow layers simulate an outline/glow using your palette
+      */
+      filter:
+        contrast(1.25)
+        brightness(1.05)
+        drop-shadow(0 0 2px rgba(25,78,116,0.9))
+        drop-shadow(0 0 6px rgba(56,107,154,0.65))
+        drop-shadow(0 0 12px rgba(12,186,159,0.45));
+      transition: transform var(--anim-time) ease, opacity var(--anim-time) ease;
     }
-    .mandala.left  { left: -120px; }
-    .mandala.right { right: -120px; transform: translateY(-50%) scaleX(-1); }
+    .mandala.left  { left: -150px; transform: translateY(-50%) rotate(-6deg); }
+    .mandala.right { right: -150px; transform: translateY(-50%) scaleX(-1) rotate(-4deg); }
 
     @keyframes mandalaFloat {
       0% { transform: translateY(-50%) rotate(0deg) scale(1); }
@@ -71,11 +86,29 @@
       100% { transform: translateY(-50%) rotate(0deg) scale(1); }
     }
 
+    /* If your mandala is very dark line-on-white, inverting can help on dark background.
+       Use the .mandala.invert class on the <img> if you want inverting applied.
+       (This converts dark lines to light lines so they are visible on dark background.)
+    */
+    .mandala.invert {
+      filter:
+        invert(1)
+        contrast(1.15)
+        brightness(1.05)
+        drop-shadow(0 0 2px rgba(71,208,176,0.9))
+        drop-shadow(0 0 6px rgba(12,186,159,0.65));
+      mix-blend-mode: normal;
+      opacity: 0.98;
+    }
+
+    /* hide mandalas on small screens so layout stays clear */
     @media (max-width: 880px) {
       .mandala { display: none; }
     }
 
-    /* Header / banner */
+    /* ===============================
+       Header / banner
+       =============================== */
     header.banner{
       display:flex; align-items:center; gap:18px; padding:22px; border-radius:16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -83,8 +116,9 @@
       border: 1px solid rgba(255,255,255,0.04);
       backdrop-filter: blur(6px);
       position: relative;
-      z-index: 2;
+      z-index: 2; /* ensure header is above mandalas */
     }
+
     .site-title {
       font-family: "Londrina Shadow", cursive;
       font-size: clamp(34px, 6vw, 64px);
@@ -96,12 +130,9 @@
     }
     .tagline { color: var(--muted); font-weight:600; font-size:clamp(14px, 1.4vw, 16px); }
 
-    /*
-      AVATAR: Enlarged box and responsive sizing.
-      - Desktop: 160px square image area (with 8px padding)
-      - Tablet/smaller screens: scales down
-      - Fallback initials sized appropriately
-    */
+    /* ===============================
+       AVATAR: enlarged and robust
+       =============================== */
     .avatar {
       width: 160px;
       height: 160px;
@@ -115,6 +146,7 @@
       justify-content:center;
       flex-shrink:0;
       position: relative;
+      z-index: 3; /* make sure avatar sits above mandala */
     }
     .avatar img {
       width:100%;
@@ -124,7 +156,6 @@
       border-radius:12px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
     }
-    /* fallback shown if image fails to load */
     .avatar-fallback {
       position:absolute;
       inset:8px;
@@ -150,10 +181,10 @@
       .avatar-fallback { font-size:30px; inset:6px; border-radius:10px; }
     }
 
-    /* ensure content sits above mandalas */
+    /* content sits above mandalas */
     .tabs, .panels, footer { position: relative; z-index: 2; }
 
-    /* Tabs & panels (kept from earlier design) */
+    /* Tabs & panels (rest of styles kept) */
     .tabs { margin-top:18px; }
     .tabs .controls { display:flex; gap:10px; flex-wrap:wrap; background: linear-gradient(90deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); padding:10px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
     .tabs input[type="radio"]{ display:none; }
@@ -207,13 +238,20 @@
   <div class="page">
     <div class="wrap" role="main">
 
-      <!-- Mandalas (place your mandala image at assets/mandala.png) -->
-      <div class="mandala left" aria-hidden="true" style="background-image: url('assets/mandala.png');"></div>
-      <div class="mandala right" aria-hidden="true" style="background-image: url('assets/mandala.png');"></div>
+      <!-- MANDALAS (use <img> so missing file is visible as a broken image during debugging)
+           Place your mandala image in the repo: assets/mandala.png (recommended transparent PNG).
+           If your mandala is black-on-white line art with a white background, and you still don't see it,
+           add the class "invert" to the <img> tags (see examples below). -->
+      <img class="mandala left"  src="assets/mandala.png" alt="" aria-hidden="true">
+      <!-- If your mandala is a white-line-on-black SVG or you need inversion, use:
+           <img class="mandala left invert" src="assets/mandala.png" ...>
+           The .invert class will attempt to make dark strokes light (useful for black-on-white images). -->
+      <img class="mandala right" src="assets/mandala.png" alt="" aria-hidden="true">
 
       <header class="banner" role="banner" aria-label="Site header">
         <div class="avatar" aria-hidden="true">
-          <!-- Avatar image: keep the filename exactly as uploaded (assets/avatar.png or correct ext) -->
+          <!-- Avatar image: ensure filename/extension exactly matches what you uploaded (e.g., avatar.png or avatar.jpg).
+               If your file is avatar.jpg, change the src below to "assets/avatar.jpg". -->
           <img id="avatar-img" src="assets/avatar.png" alt="Swara Ananth avatar">
           <div id="avatar-fallback" class="avatar-fallback">SA</div>
         </div>
@@ -221,7 +259,7 @@
         <div class="title">
           <h1 class="site-title">Swara Ananth</h1>
           <div class="tagline">[Add a short tagline here — e.g. Student • Maker • Designer]</div>
-          <div class="small" style="margin-top:8px;">Palette updated • mandalas on sides • enlarged avatar • high-contrast • glass + neumorphism</div>
+          <div class="small" style="margin-top:8px;">Palette updated • mandalas more visible • enlarged avatar • high-contrast</div>
         </div>
       </header>
 
@@ -271,11 +309,10 @@
             </div>
           </section>
 
-          <!-- PROJECTS -->
+          <!-- Keep the rest of your existing panels (projects/interests/skills/etc.) -->
           <section id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
             <h2 class="section-title">Projects</h2>
             <p class="lead">Replace placeholders below with your repo URLs or live demos.</p>
-
             <div class="card-row" style="margin-top:12px;">
               <article class="card project" aria-label="Project 1">
                 <div class="thumb" style="background:linear-gradient(135deg,var(--c1),var(--c3));">P1</div>
@@ -295,7 +332,7 @@
             </div>
           </section>
 
-          <!-- Remaining panels (interests / skills / achievements / pictures / contact / how) -->
+          <!-- Other panels omitted here for brevity — keep your content -->
           <section id="panel-interests" class="panel" role="tabpanel" aria-labelledby="tab-interests">
             <h2 class="section-title">Interests</h2>
             <p class="lead">What you like to explore — e.g., generative art, UI design, game jams, AI experiments, sound visualization.</p>
