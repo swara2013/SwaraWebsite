@@ -47,27 +47,65 @@
 
     
 /* ===============================
-   MANDALAS — background-free look
-   =============================== */
+       MANDALAS (img-based) — made highly visible
+       - Uses <img> elements so browser shows broken icon if file missing (easier to debug)
+       - Stronger contrast + colored glow via multiple drop-shadow layers
+       - mix-blend-mode set to normal to avoid unintended blending with dark bg
+       - Opacity increased so lines show
+       =============================== */
+    .mandala {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 460px;
+      max-width: 34vw;
+      opacity: 0.95; /* high so lines are clear */
+      pointer-events: none;
+      mix-blend-mode: normal; /* avoid making dark lines invisible on dark bg */
+      z-index: 1;
+      animation: var(--mandala-anim);
+      object-fit: contain;
+      image-rendering: optimizeQuality;
+      /* Enhance line visibility and add colorful glow:
+         - contrast & brightness make thin dark strokes stronger
+         - multiple drop-shadow layers simulate an outline/glow using your palette
+      */
+      filter:
+        contrast(1.25)
+        brightness(1.05)
+        drop-shadow(0 0 2px rgba(25,78,116,0.9))
+        drop-shadow(0 0 6px rgba(56,107,154,0.65))
+        drop-shadow(0 0 12px rgba(12,186,159,0.45));
+      transition: transform var(--anim-time) ease, opacity var(--anim-time) ease;
+    }
+    .mandala.left  { left: -150px; transform: translateY(-50%) rotate(-6deg); }
+    .mandala.right { right: -150px; transform: translateY(-50%) scaleX(-1) rotate(-4deg); }
 
-.mandala {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 460px;
-  max-width: 34vw;
+    @keyframes mandalaFloat {
+      0% { transform: translateY(-50%) rotate(0deg) scale(1); }
+      50% { transform: translateY(-56%) rotate(3deg) scale(1.01); }
+      100% { transform: translateY(-50%) rotate(0deg) scale(1); }
+    }
 
-  pointer-events: none;
-  z-index: 1;
+    /* If your mandala is very dark line-on-white, inverting can help on dark background.
+       Use the .mandala.invert class on the <img> if you want inverting applied.
+       (This converts dark lines to light lines so they are visible on dark background.)
+    */
+    .mandala.invert {
+      filter:
+        invert(1)
+        contrast(1.15)
+        brightness(1.05)
+        drop-shadow(0 0 2px rgba(71,208,176,0.9))
+        drop-shadow(0 0 6px rgba(12,186,159,0.65));
+      mix-blend-mode: normal;
+      opacity: 0.98;
+    }
 
-  /* ONLY background cancellation */
-  mix-blend-mode: multiply;
-  background: transparent;
-
-  opacity: 1;            /* unchanged */
-  filter: none;          /* unchanged */
-  object-fit: contain;
-}
+    /* hide mandalas on small screens so layout stays clear */
+    @media (max-width: 880px) {
+      .mandala { display: none; }
+    }
 
 
     /* ===============================
