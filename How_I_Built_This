@@ -1,0 +1,49 @@
+# HOW I BUILT THIS — Log & Prompts
+
+This file documents how the site was created so you can explain it to your teacher.
+
+Summary
+- Repo type: User site or project site on GitHub Pages.
+- Files to add: `index.md` (this file), `HOW_I_BUILT_THIS.md`, and `assets/avatar.png` (optional but recommended).
+- Hosting: Create a repo named YOUR_HANDLE.github.io (replace YOUR_HANDLE) and push these files to the `main` branch, or put them in `/docs` and enable Pages.
+
+Commands I ran (replace YOUR_HANDLE):
+```
+git init
+git add index.md HOW_I_BUILT_THIS.md assets/avatar.png
+git commit -m "Initial fun portfolio"
+# create repo on GitHub named YOUR_HANDLE.github.io via web UI
+git remote add origin https://github.com/YOUR_HANDLE/YOUR_HANDLE.github.io.git
+git branch -M main
+git push -u origin main
+```
+
+Files added
+- `index.md` — the single-file landing page (contains embedded HTML and CSS for a fun design).
+- `HOW_I_BUILT_THIS.md` — this explanation file.
+- `assets/avatar.png` — put an avatar or image in this path (create `assets/` folder).
+
+AI use & prompts
+- I used an AI assistant to create the initial playful design and structure. I then edited and personalized the content and links myself.
+- Example prompts I used (paste the actual prompts you used when you present):
+  - Prompt A: "Generate a playful GitHub Pages index.md for a student portfolio. Include a colorful hero, floating shapes, project cards, contact links, and a short 'How I built this' section. Use embedded CSS so it can be published with a single file."
+  - Prompt B (follow-up): "Make the design friendly and modern, add hover effects for projects, and include a small responsive layout for mobile."
+
+What I edited manually
+- Replaced placeholders (YOUR_NAME, YOUR_HANDLE).
+- Added my real project links and descriptions.
+- Added my avatar image to `assets/avatar.png`.
+- Checked rendering on mobile and adjusted text.
+
+How to explain this to the teacher (2–3 sentences)
+- "I used an AI assistant to generate a single-file Markdown landing page with embedded HTML/CSS. I customized the output by replacing placeholders with my name, adding real project links and an avatar, and then published it to GitHub Pages at https://YOUR_HANDLE.github.io. The HOW_I_BUILT_THIS.md contains the exact prompts and commands I executed."
+
+Notes & optional improvements
+- If you want a themed URL (project page path), use the `/docs` folder instead of a user site repo.
+- To add more polish: separate CSS into `assets/styles.css`, add a favicon, or use a Jekyll theme.
+- Keep a copy of the original AI prompts in this file (teachers may ask to inspect them).
+
+Deadline reminder
+- Publish and post your link in the monthly challenge thread before Jan 4, 2026 10:00 PM.
+
+Good luck — personalize the text and show the prompts + the edits. If you paste your filled-in index.md here, I’ll review it and suggest small improvements for clarity and presentation.
