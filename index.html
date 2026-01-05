@@ -196,7 +196,6 @@
     .tabs input#tab-about:checked ~ .controls label[for="tab-about"],
     .tabs input#tab-projects:checked ~ .controls label[for="tab-projects"],
     .tabs input#tab-interests:checked ~ .controls label[for="tab-interests"],
-    .tabs input#tab-skills:checked ~ .controls label[for="tab-skills"],
     .tabs input#tab-achievements:checked ~ .controls label[for="tab-achievements"],
     .tabs input#tab-contact:checked ~ .controls label[for="tab-contact"],
     .tabs input#tab-how:checked ~ .controls label[for="tab-how"] {
@@ -211,7 +210,6 @@
     .tabs input#tab-about:checked ~ .panels #panel-about,
     .tabs input#tab-projects:checked ~ .panels #panel-projects,
     .tabs input#tab-interests:checked ~ .panels #panel-interests,
-    .tabs input#tab-skills:checked ~ .panels #panel-skills,
     .tabs input#tab-achievements:checked ~ .panels #panel-achievements,
     .tabs input#tab-contact:checked ~ .panels #panel-contact,
     .tabs input#tab-how:checked ~ .panels #panel-how { display:block; animation: panelFade var(--anim-time) ease both; }
@@ -269,7 +267,6 @@
         <input type="radio" id="tab-about" name="tabs" checked>
         <input type="radio" id="tab-projects" name="tabs">
         <input type="radio" id="tab-interests" name="tabs">
-        <input type="radio" id="tab-skills" name="tabs">
         <input type="radio" id="tab-achievements" name="tabs">
         <input type="radio" id="tab-contact" name="tabs">
         <input type="radio" id="tab-how" name="tabs">
@@ -278,7 +275,6 @@
           <label for="tab-about" role="tab" aria-controls="panel-about">About</label>
           <label for="tab-projects" role="tab" aria-controls="panel-projects">Projects</label>
           <label for="tab-interests" role="tab" aria-controls="panel-interests">Interests</label>
-          <label for="tab-skills" role="tab" aria-controls="panel-skills">Skills</label>
           <label for="tab-achievements" role="tab" aria-controls="panel-achievements">Achievements</label>
           <label for="tab-contact" role="tab" aria-controls="panel-contact">Contact</label>
           <label for="tab-how" role="tab" aria-controls="panel-how">How I Built This</label>
@@ -338,7 +334,7 @@
           <!-- Other panels omitted here for brevity — keep your content -->
           <section id="panel-interests" class="panel" role="tabpanel" aria-labelledby="tab-interests">
             <h2 class="section-title">Interests</h2>
-            <p class="lead">I like to explore AI and its uses, try coding challenges, and learn new computer concepts. I also do several other extracurriculars, such as singing (Carnatic music), dance (Bharathnatyam), veena (Indian classical instrument), percussion (school band), badminton, table tennis, and art.</p>
+            <p class="lead">I like to explore AI and its uses, try coding challenges, and learn new computer concepts. I also do several other extracurriculars, such as singing (Carnatic music), dance (Bharathnatyam), veena (Indian classical instrument), percussion (school band), badminton, table tennis, and art. I am good at teaching others. An example is that I volunteer as an assistant teacher in my music school. I also like learning new languages and can speak 4 languages.</p>
             <div class="divider"></div>
 
             <div class="card-row">
@@ -364,11 +360,6 @@
           </section>
           </section>
           
-          <section id="panel-skills" class="panel" role="tabpanel" aria-labelledby="tab-skills">
-            <h2 class="section-title">Skills</h2>
-            <p class="lead">I am good at teaching others. An example is that I volunteer as an assistant teacher in my music school. I also know 3 languages other than English (Spanish, Tamil, and Hindi)and am mostly fluent in all 3.</p>
-          </section>
-
           <section id="panel-achievements" class="panel" role="tabpanel" aria-labelledby="tab-achievements">
             <h2 class="section-title">Achievements</h2>
             <p class="lead">Over the past few years, I have won many awards in many different activities I do. I have won several awards/certificates in music and dance competitions and performances such as BAKU, Papanasam Sivan, Cleveland Thyagaraja Aradhana, Maitri, and many more.  I regularly perform (singing, dance, and veena) for various temples and organizations. I also have won awards in art competitions, such as the Cupertino Young Artist's Award. I have participated in many robotics competitions and math contests such as the Math Olympaid. I have also played percussion for 5 band concerts so far.</p>
