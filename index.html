@@ -198,7 +198,6 @@
     .tabs input#tab-interests:checked ~ .controls label[for="tab-interests"],
     .tabs input#tab-skills:checked ~ .controls label[for="tab-skills"],
     .tabs input#tab-achievements:checked ~ .controls label[for="tab-achievements"],
-    .tabs input#tab-pictures:checked ~ .controls label[for="tab-pictures"],
     .tabs input#tab-contact:checked ~ .controls label[for="tab-contact"],
     .tabs input#tab-how:checked ~ .controls label[for="tab-how"] {
       color:#051025;
@@ -214,7 +213,6 @@
     .tabs input#tab-interests:checked ~ .panels #panel-interests,
     .tabs input#tab-skills:checked ~ .panels #panel-skills,
     .tabs input#tab-achievements:checked ~ .panels #panel-achievements,
-    .tabs input#tab-pictures:checked ~ .panels #panel-pictures,
     .tabs input#tab-contact:checked ~ .panels #panel-contact,
     .tabs input#tab-how:checked ~ .panels #panel-how { display:block; animation: panelFade var(--anim-time) ease both; }
     @keyframes panelFade { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
@@ -273,7 +271,6 @@
         <input type="radio" id="tab-interests" name="tabs">
         <input type="radio" id="tab-skills" name="tabs">
         <input type="radio" id="tab-achievements" name="tabs">
-        <input type="radio" id="tab-pictures" name="tabs">
         <input type="radio" id="tab-contact" name="tabs">
         <input type="radio" id="tab-how" name="tabs">
 
@@ -283,7 +280,6 @@
           <label for="tab-interests" role="tab" aria-controls="panel-interests">Interests</label>
           <label for="tab-skills" role="tab" aria-controls="panel-skills">Skills</label>
           <label for="tab-achievements" role="tab" aria-controls="panel-achievements">Achievements</label>
-          <label for="tab-pictures" role="tab" aria-controls="panel-pictures">Pictures</label>
           <label for="tab-contact" role="tab" aria-controls="panel-contact">Contact</label>
           <label for="tab-how" role="tab" aria-controls="panel-how">How I Built This</label>
         </div>
@@ -376,11 +372,6 @@
           <section id="panel-achievements" class="panel" role="tabpanel" aria-labelledby="tab-achievements">
             <h2 class="section-title">Achievements</h2>
             <p class="lead">Over the past few years, I have won many awards in many different activities I do. I have won several awards/certificates in music and dance competitions and performances such as BAKU, Papanasam Sivan, Cleveland Thyagaraja Aradhana, Maitri, and many more.  I regularly perform (singing, dance, and veena) for various temples and organizations. I also have won awards in art competitions, such as the Cupertino Young Artist's Award. I have participated in many robotics competitions and math contests such as the Math Olympaid. I have also played percussion for 5 band concerts so far.</p>
-          </section>
-
-          <section id="panel-pictures" class="panel" role="tabpanel" aria-labelledby="tab-pictures">
-            <h2 class="section-title">Pictures</h2>
-            <p class="lead">Replace the src with your uploaded images (e.g., assets/photo1.jpg).</p>
           </section>
 
           <section id="panel-contact" class="panel" role="tabpanel" aria-labelledby="tab-contact">
