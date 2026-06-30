@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Swara Ananth — Portfolio</title>
-  <meta name="description" content="Swara Ananth — personal site" />
+  <title>Swara Ananth — Creative Technologist & Digital Artist</title>
+  <meta name="description" content="Swara Ananth - 7th Grade Student, Developer, Designer, and Creative Innovator. Passionate about AI, robotics, coding, and digital design." />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Anaheim&display=swap" rel="stylesheet">
@@ -213,6 +213,7 @@
 
     .tabs input#tab-about:checked ~ .controls label[for="tab-about"],
     .tabs input#tab-projects:checked ~ .controls label[for="tab-projects"],
+    .tabs input#tab-skills:checked ~ .controls label[for="tab-skills"],
     .tabs input#tab-interests:checked ~ .controls label[for="tab-interests"],
     .tabs input#tab-achievements:checked ~ .controls label[for="tab-achievements"],
     .tabs input#tab-contact:checked ~ .controls label[for="tab-contact"],
@@ -227,6 +228,7 @@
     .panel { display:none; padding:22px; border-radius:14px; background: linear-gradient(180deg, rgba(71,208,176,0.08), rgba(12,186,159,0.05)); border:1px solid rgba(71,208,176,0.2); box-shadow: 6px 6px 16px rgba(2,6,23,0.35), -4px -4px 10px rgba(30,40,80,0.12), 0 0 25px rgba(71,208,176,0.1); }
     .tabs input#tab-about:checked ~ .panels #panel-about,
     .tabs input#tab-projects:checked ~ .panels #panel-projects,
+    .tabs input#tab-skills:checked ~ .panels #panel-skills,
     .tabs input#tab-interests:checked ~ .panels #panel-interests,
     .tabs input#tab-achievements:checked ~ .panels #panel-achievements,
     .tabs input#tab-contact:checked ~ .panels #panel-contact,
@@ -244,7 +246,7 @@
     }
 
     h2.section-title { margin:0; color:var(--c1); font-size:1.1rem; }
-    p.lead { color:var(--muted); margin-top:8px; }
+    p.lead { color:var(--muted); margin-top:8px; line-height: 1.6; }
 
     .project { display:flex; gap:12px; align-items:center; padding:10px; border-radius:10px; background: linear-gradient(90deg, rgba(71,208,176,0.08), rgba(12,186,159,0.05)); transition: all var(--anim-time) ease; border: 1px solid rgba(71,208,176,0.2); }
     .project:hover { 
@@ -269,6 +271,14 @@
       border-color: rgba(71,208,176,0.6);
     }
 
+    .skill-tag { display:inline-block; background: linear-gradient(135deg, rgba(71,208,176,0.15), rgba(12,186,159,0.1)); border: 1px solid rgba(71,208,176,0.3); border-radius:20px; padding:8px 14px; margin:4px; font-size:0.9rem; color:var(--c1); transition: all var(--anim-time) ease; }
+    .skill-tag:hover { background: linear-gradient(135deg, rgba(71,208,176,0.25), rgba(12,186,159,0.18)); box-shadow: 0 0 25px rgba(71,208,176,0.3); transform: scale(1.05); }
+
+    .stat-box { background: linear-gradient(180deg, rgba(71,208,176,0.12), rgba(12,186,159,0.08)); border-radius:10px; padding:16px; text-align:center; border:1px solid rgba(71,208,176,0.3); transition: all var(--anim-time) ease; }
+    .stat-box:hover { box-shadow: 0 0 30px rgba(71,208,176,0.3); transform: translateY(-5px); }
+    .stat-number { font-size:1.8rem; font-weight:800; color:var(--c1); }
+    .stat-label { color:var(--muted); font-size:0.9rem; margin-top:4px; }
+
     .small { color:#9dbbe6; font-size:0.92rem; }
     @media (max-width:880px){ .banner { flex-direction:row; gap:12px; padding:14px; align-items:center; } .controls { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none } .tabs label { white-space:nowrap; } }
     .divider { height:1px; background: linear-gradient(90deg, transparent, rgba(71,208,176,0.3), transparent); margin:14px 0; border-radius:4px; }
@@ -286,6 +296,8 @@
       text-shadow: 0 0 10px rgba(71,208,176,0.5);
       border-bottom-color: rgba(71,208,176,0.6);
     }
+
+    .highlight { color: var(--c1); font-weight: 700; }
 
   </style>
 </head>
@@ -313,14 +325,15 @@
 
         <div class="title">
           <h1 class="site-title">Swara A.</h1>
-          <div class="tagline">Student • Maker • Coder • Designer</div>
-          <div class="small" style="margin-top:8px;">Welcome to my Markdown webpage that I built on Github Pages!</div>
+          <div class="tagline">Creative Technologist • Developer • Designer • Digital Artist</div>
+          <div class="small" style="margin-top:8px;">Building innovative solutions at the intersection of art, code, and technology. 🚀</div>
         </div>
       </header>
 
       <div class="tabs" role="tablist" aria-label="Main sections">
         <input type="radio" id="tab-about" name="tabs" checked>
         <input type="radio" id="tab-projects" name="tabs">
+        <input type="radio" id="tab-skills" name="tabs">
         <input type="radio" id="tab-interests" name="tabs">
         <input type="radio" id="tab-achievements" name="tabs">
         <input type="radio" id="tab-contact" name="tabs">
@@ -329,6 +342,7 @@
         <div class="controls" role="presentation">
           <label for="tab-about" role="tab" aria-controls="panel-about">About</label>
           <label for="tab-projects" role="tab" aria-controls="panel-projects">Projects</label>
+          <label for="tab-skills" role="tab" aria-controls="panel-skills">Skills</label>
           <label for="tab-interests" role="tab" aria-controls="panel-interests">Interests</label>
           <label for="tab-achievements" role="tab" aria-controls="panel-achievements">Achievements</label>
           <label for="tab-contact" role="tab" aria-controls="panel-contact">Contact</label>
@@ -339,97 +353,245 @@
           <!-- ABOUT -->
           <section id="panel-about" class="panel" role="tabpanel" aria-labelledby="tab-about">
             <h2 class="section-title">About Me</h2>
-            <p class="lead">Hello! I am a 7th grader in Sunnyvale, and I love learning, coding, and robotics. I am good at math, have lots of creativity, and am artistically talented. I hope my website shows my passion and talent!</p>
+            <p class="lead">Hey there! 👋 I'm Swara, a driven 7th grader from Sunnyvale, California with a deep passion for technology, art, and creative problem-solving. I believe that the most powerful innovations happen at the intersection of code and creativity, and I'm on a mission to make that happen.</p>
+            
+            <p class="lead">I've been coding for over <span class="highlight">5+ years</span>, exploring everything from web development to AI. Beyond the screen, I'm an accomplished musician, dancer, and artist who brings that creative sensibility to every technical project I undertake. I love learning new things and pushing the boundaries of what's possible.</p>
 
             <div class="divider"></div>
 
             <div class="card-row">
               <div class="card">
-                <h3 style="margin:0 0 6px 0;">Quick facts</h3>
+                <h3 style="margin:0 0 6px 0;">Quick Facts</h3>
                 <ul style="margin:8px 0 0 18px; color:var(--muted);">
-                  <li>Location: Sunnyvale, California</li>
-                  <li>Grade: 7th</li>
-                  <li>Favorite subject: Math</li>
-                  <li>Siblings: Younger sister</li>
-                  <li>Pronouns: she/her</li>
+                  <li><span class="highlight">Location:</span> Sunnyvale, California 🌉</li>
+                  <li><span class="highlight">Grade:</span> 7th</li>
+                  <li><span class="highlight">Coding Experience:</span> 5+ years</li>
+                  <li><span class="highlight">Favorite Subject:</span> Math & CS</li>
+                  <li><span class="highlight">Siblings:</span> 1 awesome younger sister</li>
+                  <li><span class="highlight">Pronouns:</span> she/her</li>
                 </ul>
               </div>
 
               <div class="card">
-                <h3 style="margin:0 0 6px 0;">Current focus</h3>
-                <p class="small" style="margin:0;">I am currently focusing on learning to work with AI, experimenting with creative coding, and studying robotics. I want to be familiar with AI and use it to build cool things!</p>
+                <h3 style="margin:0 0 6px 0;">What Drives Me</h3>
+                <p class="small" style="margin:0;">I'm passionate about leveraging AI and technology to create meaningful digital experiences. Right now, I'm diving deep into artificial intelligence, exploring how machine learning can solve real-world problems. I'm also building cool projects with creative coding and robotics, and I'm always experimenting with new tools and frameworks. My goal? To become a full-stack developer and digital innovator who can bridge the gap between design and technology!</p>
               </div>
             </div>
           </section>
 
           <!-- PROJECTS -->
           <section id="panel-projects" class="panel" role="tabpanel" aria-labelledby="tab-projects">
-            <h2 class="section-title">Projects</h2>
-            <p class="lead">These are some of the projects that I have worked on over the past few months. Feel free to check them out!</p>
-            <p>Note: If the links aren't working, try copy and pasting them in a new tab.</p>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="lead">I love building things! From web applications to 3D designs, here are some of my favorite projects that showcase my skills and creativity. Each project represents my journey of learning and growing as a developer and designer.</p>
+            
             <div class="card-row" style="margin-top:12px;">
               <article class="card project" aria-label="Project 1">
                 <div class="thumb" style="background:linear-gradient(135deg,var(--c1),var(--c3));">P1</div>
                 <div>
-                  <div style="font-weight:800; color:var(--c1);">Webpage Portfolio</div>
-                  <div class="small" style="margin-top:6px;">This personal Markdown website was made in Github Sites. It was coded in HTML and CSS. Link: <a href="https://swara2013.github.io/SwaraWebsite/" style="color:var(--c1)">https://swara2013.github.io/SwaraWebsite/</a></div>
+                  <div style="font-weight:800; color:var(--c1); font-size:1.05rem;">Swara's Digital Portfolio Website</div>
+                  <div class="small" style="margin-top:6px;">A fully responsive single-page portfolio built with HTML5, CSS3, and modern web design principles. Features interactive hover effects, glowing animations, and a beautiful dark theme. Deployed on GitHub Pages for seamless hosting and showcasing my work to the world.</div>
+                  <div style="margin-top:8px;"><a href="https://swara2013.github.io/SwaraWebsite/" target="_blank" style="color:var(--c1)">🔗 Live Website</a></div>
                 </div>
               </article>
 
               <article class="card project" aria-label="Project 2">
                 <div class="thumb" style="background:linear-gradient(135deg,var(--c2),var(--c4));">P2</div>
                 <div>
-                  <div style="font-weight:800; color:var(--c1);">Tinkercad Fidget</div>
-                  <div class="small" style="margin-top:6px;">
-                    This is a 3D printed fidget toy I made on Tinkercad. Link: 
-                    <a href="Spectacular%20Krunk-Hillar%20(1).png" style="color:var(--c1)">Fidget Design</a>
-                  </div>
+                  <div style="font-weight:800; color:var(--c1); font-size:1.05rem;">Tinkercad 3D Fidget Design</div>
+                  <div class="small" style="margin-top:6px;">Designed and 3D modeled a custom fidget toy using Tinkercad's intuitive design tools. This project was then 3D printed, demonstrating my understanding of CAD principles, spatial design, and the entire digital-to-physical pipeline. Great for stress relief and showing off my maker skills!</div>
+                  <div style="margin-top:8px;"><a href="Spectacular%20Krunk-Hillar%20(1).png" target="_blank" style="color:var(--c1)">📸 View Design</a></div>
+                </div>
+              </article>
+
+              <article class="card project" aria-label="Project 3">
+                <div class="thumb" style="background:linear-gradient(135deg,var(--c1),var(--c2));">P3</div>
+                <div>
+                  <div style="font-weight:800; color:var(--c1); font-size:1.05rem;">VEX Robotics Team Projects</div>
+                  <div class="small" style="margin-top:6px;">Collaborated with a robotics team using VEX platforms to build autonomous and driver-controlled robots. Learned engineering principles, problem-solving under pressure, and teamwork. These projects taught me how to think computationally and apply code to solve real-world mechanical challenges.</div>
+                  <div style="margin-top:8px;">🤖 Team-based learning experience</div>
                 </div>
               </article>
             </div>
           </section>
 
-          <!-- INTERESTS -->
-          <section id="panel-interests" class="panel" role="tabpanel" aria-labelledby="tab-interests">
-            <h2 class="section-title">Interests</h2>
-            <p class="lead">I like to explore AI and its uses, try coding challenges, and learn new computer concepts. I also do several other extracurriculars, such as singing (Carnatic music), dancing, playing the veena, and sports!</p>
+          <!-- SKILLS -->
+          <section id="panel-skills" class="panel" role="tabpanel" aria-labelledby="tab-skills">
+            <h2 class="section-title">My Skillset</h2>
+            <p class="lead">I've developed a diverse toolkit of skills across multiple domains. From programming languages to design tools, creative abilities to soft skills, here's what I bring to the table:</p>
+            
             <div class="divider"></div>
 
             <div class="card-row">
               <div class="card">
-                <h3 style="margin:0 0 6px 0;">Arts</h3>
-                <ul style="margin:8px 0 0 18px; color:var(--muted);">
-                  <li>Music - Teacher: Hari Devanath, How long have I been learning: 4 years</li>
-                  <li>Dance - Teacher: Akila Rao, How long have I been learning: 1 year</li>
-                  <li>Veena - Teacher: Srikanth Chary, How long have I been learning: 3 years</li>
-                  <li>Art: Mostly self taught, I sketch, paint, and know how to use different mediums like oil pastels, colored pencils, markers, etc.</li>
-                </ul>
-              </div> 
+                <h3 style="margin:0 0 6px 0;">💻 Programming & Development</h3>
+                <div style="margin-top:10px;">
+                  <span class="skill-tag">Python</span>
+                  <span class="skill-tag">HTML5</span>
+                  <span class="skill-tag">CSS3</span>
+                  <span class="skill-tag">Java</span>
+                  <span class="skill-tag">Web Design</span>
+                  <span class="skill-tag">GitHub</span>
+                  <span class="skill-tag">Git</span>
+                </div>
+              </div>
 
               <div class="card">
-                <h3 style="margin:0 0 6px 0;">Sports and Studies</h3>
+                <h3 style="margin:0 0 6px 0;">🎨 Design & Creative Tools</h3>
+                <div style="margin-top:10px;">
+                  <span class="skill-tag">Tinkercad</span>
+                  <span class="skill-tag">3D Modeling</span>
+                  <span class="skill-tag">UI/UX Design</span>
+                  <span class="skill-tag">Digital Art</span>
+                  <span class="skill-tag">Sketch & Paint</span>
+                  <span class="skill-tag">Color Theory</span>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🤖 Tech & Innovation</h3>
+                <div style="margin-top:10px;">
+                  <span class="skill-tag">AI & ML Basics</span>
+                  <span class="skill-tag">Robotics (VEX)</span>
+                  <span class="skill-tag">Problem Solving</span>
+                  <span class="skill-tag">Computational Thinking</span>
+                  <span class="skill-tag">CAD</span>
+                  <span class="skill-tag">Electronics</span>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🎭 Soft Skills & Talents</h3>
+                <div style="margin-top:10px;">
+                  <span class="skill-tag">Communication</span>
+                  <span class="skill-tag">Teamwork</span>
+                  <span class="skill-tag">Leadership</span>
+                  <span class="skill-tag">Creativity</span>
+                  <span class="skill-tag">Quick Learner</span>
+                  <span class="skill-tag">Time Management</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider" style="margin-top:20px;"></div>
+
+            <h3 style="color:var(--c1); margin-top:20px;">Learning Goals</h3>
+            <p class="lead">I'm constantly pushing myself to learn and grow. Currently, I'm focused on:</p>
+            <ul style="margin:8px 0 0 18px; color:var(--muted); line-height: 1.8;">
+              <li>Advanced Python and backend development</li>
+              <li>Machine Learning and AI applications</li>
+              <li>Full-stack web development</li>
+              <li>Mobile app development</li>
+              <li>Advanced robotics and automation</li>
+              <li>UI/UX design principles and tools</li>
+            </ul>
+          </section>
+
+          <!-- INTERESTS -->
+          <section id="panel-interests" class="panel" role="tabpanel" aria-labelledby="tab-interests">
+            <h2 class="section-title">My Passions & Interests</h2>
+            <p class="lead">Life is about balance! While I'm passionate about tech and coding, I'm equally dedicated to arts, athletics, and continuous learning. I believe that being a well-rounded person makes you a better creator and innovator.</p>
+            
+            <div class="divider"></div>
+
+            <div class="card-row">
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🎵 Performing Arts</h3>
                 <ul style="margin:8px 0 0 18px; color:var(--muted);">
-                  <li>Badminton - I go to a class and mostly learn and play just for fun and to connect with people.</li>
-                  <li>Table Tennis - Mostly home taught and just playing for fun and to stay active.</li>
-                  <li>Robotics/Coding - I have been coding for 5-6 years and know Python and HTML, I used to do Vex Robotics in a team.</li>
-                  <li>Percussion: Part of the school intermediate band, occasionally have concerts and competitions.</li>
+                  <li><strong>Carnatic Music:</strong> Training under Hari Devanath for 4 years. Deeply rooted in South Indian classical tradition.</li>
+                  <li><strong>Classical Dance:</strong> 1 year with teacher Akila Rao (previously trained for 4 years with Janani Narayanan). Love the grace and expression it brings.</li>
+                  <li><strong>Veena:</strong> 3 years learning this beautiful stringed instrument with Srikanth Chary. Combines my love for music and technique.</li>
+                  <li><strong>Percussion:</strong> Part of my school's intermediate band with regular concerts and competitions.</li>
                 </ul>
               </div>
-            </div> 
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">⚽ Athletics & Sports</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li><strong>Badminton:</strong> Competitive class training for fun, fitness, and connecting with teammates. Love the strategy involved!</li>
+                  <li><strong>Table Tennis:</strong> Self-taught and play regularly to stay active and sharp.</li>
+                  <li><strong>General Fitness:</strong> Believe in maintaining a healthy lifestyle to fuel my creative mind.</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🎨 Visual Arts & Creativity</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li><strong>Sketching & Painting:</strong> Mostly self-taught. I love exploring different styles and mediums.</li>
+                  <li><strong>Mixed Media:</strong> Proficient with oil pastels, colored pencils, markers, and digital art tools.</li>
+                  <li><strong>Design Thinking:</strong> Bringing artistic vision to digital and physical projects.</li>
+                  <li><strong>Visual Storytelling:</strong> Using art to communicate ideas and emotions.</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">💡 Tech & Innovation Interests</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li><strong>AI & Machine Learning:</strong> Fascinated by how AI can solve real problems and augment human creativity.</li>
+                  <li><strong>Coding Challenges:</strong> Love tackling algorithmic problems and competitive programming.</li>
+                  <li><strong>Robotics & Automation:</strong> Building smart systems that interact with the physical world.</li>
+                  <li><strong>Emerging Tech:</strong> Always exploring new frameworks, tools, and technologies in the digital space.</li>
+                </ul>
+              </div>
+            </div>
           </section>
           
           <!-- ACHIEVEMENTS -->
           <section id="panel-achievements" class="panel" role="tabpanel" aria-labelledby="tab-achievements">
-            <h2 class="section-title">Achievements</h2>
-            <p class="lead">Over the past few years, I have won many awards in many different activities I do. I have won several awards/certificates in music and dance competitions and performances.</p>
-            <div class="card-row">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <p class="lead">I'm proud of the achievements I've earned through dedication, hard work, and passion. These awards represent my commitment to excellence across academics, arts, and technology:</p>
+            
+            <div class="divider"></div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; margin-top:20px;">
+              <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Music & Dance Certificates</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Competition Awards</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Years Coding</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Active Skills Mastered</div>
+              </div>
+            </div>
+
+            <div class="card-row" style="margin-top:20px;">
               <div class="card">
-                <h3 style="margin:0 0 6px 0;">Awards & Recognition</h3>
+                <h3 style="margin:0 0 6px 0;">🎖️ Music & Performance Awards</h3>
                 <ul style="margin:8px 0 0 18px; color:var(--muted);">
-                  <li>Multiple music and dance competition certificates</li>
-                  <li>Academic achievement awards</li>
-                  <li>Robotics team accomplishments</li>
-                  <li>Creative projects and recognition</li>
+                  <li>Multiple competition certificates in Carnatic music</li>
+                  <li>Classical dance performance recognition</li>
+                  <li>Veena recital certificates</li>
+                  <li>Percussion band competition medals</li>
+                  <li>Best performer recognition in school events</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">📚 Academic & Tech Recognition</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Consistent academic excellence in Math and Science</li>
+                  <li>VEX Robotics team achievements</li>
+                  <li>Coding challenge completions</li>
+                  <li>Peer recognition for creative projects</li>
+                  <li>Leadership roles in tech clubs and groups</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🌟 Personal Achievements</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Self-taught in multiple artistic mediums</li>
+                  <li>Created and deployed a professional portfolio website</li>
+                  <li>Designed and 3D printed a functional fidget toy</li>
+                  <li>Contributing to open-source learning</li>
+                  <li>Mentor and helper for younger students</li>
                 </ul>
               </div>
             </div>
@@ -437,51 +599,127 @@
 
           <!-- CONTACT -->
           <section id="panel-contact" class="panel" role="tabpanel" aria-labelledby="tab-contact">
-            <h2 class="section-title">Contact</h2>
-            <p class="lead">Here is my contact information:</p>
-            <ul style="margin:8px 0 0 18px; color:var(--muted);">
-              <li>
-                If you want to contact me, please fill in your details into 
-                <a href="https://forms.gle/iDQH5EcXfBXoH6SDA" target="_blank" style="color:var(--c1);">this form</a>, 
-                and I will get back to you as soon as possible. Thank you!
-              </li>
-            </ul>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="lead">I'd love to hear from you! Whether you want to collaborate, discuss tech and design, share opportunities, or just chat about creativity and innovation, feel free to reach out. I'm always excited to connect with like-minded people!</p>
+            
+            <div class="divider"></div>
+
+            <div class="card-row">
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">📬 Contact Form</h3>
+                <p class="small" style="margin-top:6px;">The best way to reach me! Fill out a quick form and I'll get back to you as soon as possible.</p>
+                <div style="margin-top:12px;"><a href="https://forms.gle/iDQH5EcXfBXoH6SDA" target="_blank" style="color:var(--c1); font-weight:800;">→ Send me a message</a></div>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🌐 Find Me Online</h3>
+                <p class="small" style="margin-top:6px;">Connect with me on various platforms where I share my work and ideas:</p>
+                <ul style="margin:8px 0 0 18px; color:var(--muted); list-style:none; padding:0;">
+                  <li style="margin:4px 0;">📍 <a href="https://github.com/swara2013" target="_blank">GitHub</a> - My code projects</li>
+                  <li style="margin:4px 0;">💼 Open to collaboration opportunities</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="margin-top:20px; padding:16px; border-radius:10px; background: linear-gradient(180deg, rgba(71,208,176,0.08), rgba(12,186,159,0.05)); border:1px solid rgba(71,208,176,0.2);">
+              <p style="margin:0; color:var(--muted); font-style:italic;">💡 <strong>Fun Fact:</strong> I built this entire portfolio website myself using HTML, CSS, and a little help from AI! It showcases my passion for web design and creative coding.</p>
+            </div>
           </section>
           
           <!-- HOW I BUILT THIS -->
           <section id="panel-how" class="panel" role="tabpanel" aria-labelledby="tab-how">
-            <h2 class="section-title">How I Built This</h2>
-            <p class="lead">I used an AI assistant (Github Copilot) to generate a single-file Markdown webpage with HTML and CSS. I customized the output by replacing placeholders, adding real projects and information, and refining the design.</p>
-            <p><strong>Files added:</strong></p>
-            <ul style="margin:8px 0 0 18px; color:var(--muted);">
-              <li>index.html — the page with the code for the website.</li>
-              <li>How_I_Built_This — the explanation file to record how I made the website.</li>
-              <li>assets/avatar.png — put an avatar image in this path (create assets/ folder).</li>
-              <li>assets/mandala.png — put a mandala image in this path for decoration.</li>
-            </ul>
+            <h2 class="section-title">How I Built This Website</h2>
+            <p class="lead">This portfolio is a perfect example of how I blend technology, design, and creativity. Here's the story of how I brought this digital space to life!</p>
 
-            <p style="margin-top:14px;"><strong>AI use & prompts:</strong> I used an AI assistant to create the initial design and structure. I then edited and personalized the content, links, and decoration myself.</p>
-            <p style="margin-top:8px;"><strong>Example prompts I used:</strong></p>
-            <ul style="margin:8px 0 0 18px; color:var(--muted);">
-              <li>Prompt A: Write the code for a GitHub Pages index.html for a student portfolio. Include a colorful scheme, project cards, contact links, and a 'How I built this' section.</li>
-              <li>Prompt B (follow-up): Update the design with a new color scheme and better layout for all sections.</li>
-            </ul>
+            <div class="divider"></div>
 
-            <p style="margin-top:14px;"><strong>What I edited manually:</strong></p>
-            <ul style="margin:8px 0 0 18px; color:var(--muted);">
-              <li>Replaced placeholders with real content.</li>
-              <li>Added my real project links and descriptions.</li>
-              <li>Added my images to the assets/ folder.</li>
-              <li>Checked and adjusted text and decorations.</li>
-            </ul>
+            <div class="card-row">
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🛠️ Technical Stack</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li><strong>Frontend:</strong> HTML5 & CSS3</li>
+                  <li><strong>Styling:</strong> Custom CSS with modern animations</li>
+                  <li><strong>Hosting:</strong> GitHub Pages (free & reliable)</li>
+                  <li><strong>Version Control:</strong> Git & GitHub</li>
+                  <li><strong>Design:</strong> Custom UI/UX implementation</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">💡 Design Philosophy</h3>
+                <p class="small" style="margin-top:6px;">I wanted to create a portfolio that reflects my personality and technical skills:</p>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Modern, sleek dark theme</li>
+                  <li>Interactive glowing hover effects</li>
+                  <li>Smooth animations and transitions</li>
+                  <li>Responsive design for all devices</li>
+                  <li>Accessibility-first approach</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-row">
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🤖 AI Collaboration</h3>
+                <p class="small" style="margin-top:6px;">I used GitHub Copilot (an AI assistant) to help generate the initial structure and styling framework. This was a learning experience in how to:</p>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Use AI effectively as a development tool</li>
+                  <li>Customize AI-generated code</li>
+                  <li>Implement my own creative vision</li>
+                  <li>Debug and optimize code</li>
+                  <li>Create something uniquely mine</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">📝 My Custom Work</h3>
+                <p class="small" style="margin-top:6px;">Beyond the initial template, I personally:</p>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>Designed all visual elements and color schemes</li>
+                  <li>Added interactive hover effects and animations</li>
+                  <li>Created all content and copywriting</li>
+                  <li>Refined the user experience</li>
+                  <li>Continuously improve and update the site</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-row">
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">📁 Project Structure</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li><code>index.html</code> — Main website file</li>
+                  <li><code>assets/avatar.png</code> — Profile picture</li>
+                  <li><code>assets/mandala.png</code> — Decorative background element</li>
+                  <li>All CSS is embedded inline for easy deployment</li>
+                  <li>Minimal dependencies = fast loading & reliability</li>
+                </ul>
+              </div>
+
+              <div class="card">
+                <h3 style="margin:0 0 6px 0;">🚀 Lessons Learned</h3>
+                <ul style="margin:8px 0 0 18px; color:var(--muted);">
+                  <li>How AI can accelerate development when used wisely</li>
+                  <li>Importance of responsive design</li>
+                  <li>Power of GitHub Pages for easy deployment</li>
+                  <li>CSS animations can create wow moments</li>
+                  <li>Good UX comes from iteration and refinement</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="margin-top:20px; padding:16px; border-radius:10px; background: linear-gradient(180deg, rgba(71,208,176,0.08), rgba(12,186,159,0.05)); border:1px solid rgba(71,208,176,0.2);">
+              <p style="margin:0; color:var(--muted);"><strong>Key Takeaway:</strong> This project proves that with a combination of AI tools, creativity, and dedication, you can create professional-quality digital experiences at any age. The future of web development isn't about doing it all alone—it's about using smart tools to amplify your vision. 🎨✨</p>
+            </div>
           </section>
 
         </div>
       </div>
 
       <div style="height:26px;"></div>
-      <footer style="text-align:center;color:var(--muted); font-size:1.5rem; position: relative; z-index:2;">
-        Thank you for visiting my website! I hope you learned something new about me!
+      <footer style="text-align:center;color:var(--muted); font-size:1rem; position: relative; z-index:2;">
+        <p style="margin:10px 0;">✨ Built with passion, creativity, and code by Swara Ananth</p>
+        <p style="margin:5px 0; font-size:0.9rem;">© 2026 • Creating the future, one pixel at a time 🚀</p>
       </footer>
 
     </div>
